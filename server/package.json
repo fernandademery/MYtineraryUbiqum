@@ -1,0 +1,31 @@
+{
+  "name": "myitinerary",
+  "version": "1.0.0",
+  "description": "Travel app. Final project at Ubiqum's bootcamp.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "concurrently \"nodemon server.js\" \"cd ../client && npm start\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fernandademery/MYtinerary.git"
+  },
+  "keywords": [
+    "JavaScript",
+    "React",
+    "Redux",
+    "Bootstrap",
+    "RestfulAPI",
+    "Node.js"
+  ],
+  "author": "Fernanda D'Emery",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fernandademery/MYtinerary/issues"
+  },
+  "homepage": "https://github.com/fernandademery/MYtinerary#readme",
+  "dependencies": {
+    "concurrently": "^5.0.1"
+  }
+}
