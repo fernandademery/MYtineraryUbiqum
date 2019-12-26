@@ -24,7 +24,7 @@ export default function Landingv2() {
       marginTop: "100px"
     },
     profileStyle: {
-      marginTop: "10px"
+      marginTop: "20px"
     },
     carouselStyle: {
       marginTop: "30px"
@@ -38,7 +38,7 @@ export default function Landingv2() {
           xs={{ span: 1, offset: 9 }}
           md={{ span: 1, offset: 1 }}
         >
-          <Profile />
+          <Profile className="profilepic" />
         </Col>
       </Row>
       <Row xs={2}>

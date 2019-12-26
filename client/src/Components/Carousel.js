@@ -14,10 +14,10 @@ import Viena from "../images/viena.jpg";
 export default class extends React.Component {
   render() {
     const settings = {
-      className: "center",
+      //className: "center",
       centerMode: true,
       infinite: true,
-      centerPadding: "60px",
+      centerPadding: "0px",
       slidesToShow: 1,
       speed: 500,
       rows: 4,
@@ -26,6 +26,7 @@ export default class extends React.Component {
       pauseOnHover: true,
       dots: true,
       adaptiveHight: true,
+      useCSS: true,
       responsive: [
         {
           breakpoint: 1024,
@@ -68,89 +69,89 @@ export default class extends React.Component {
     };
     return (
       <div>
-        <h2>Popular MYtineraries</h2>
+        <h2> Popular MYtineraries </h2>{" "}
         <Slider {...settings}>
           <div>
             <img src={Recife} alt="Recife" className="carousel-img" />
-          </div>
+          </div>{" "}
           <div>
             <img src={Berlin} alt="Berlin" className="carousel-img" />
-          </div>
+          </div>{" "}
           <div>
-            <h3>Recife</h3>
-          </div>
+            <h3> Recife </h3>{" "}
+          </div>{" "}
           <div>
-            <h3>Berlin</h3>
-          </div>
+            <h3> Berlin </h3>{" "}
+          </div>{" "}
           <div>
             <img src={Paris} alt="Paris" className="carousel-img" />
-          </div>
+          </div>{" "}
           <div>
             <img src={Rio} alt="Rio" className="carousel-img" />
-          </div>
+          </div>{" "}
           <div>
-            <h3>Paris</h3>
-          </div>
+            <h3> Paris </h3>{" "}
+          </div>{" "}
           <div>
-            <h3>Rio</h3>
-          </div>
+            <h3> Rio </h3>{" "}
+          </div>{" "}
           <div>
             <img src={Barcelona} alt="Barcelona" className="carousel-img" />
-          </div>
+          </div>{" "}
           <div>
             <img
               src={Thessaloniki}
               alt="Thessaloniki"
               className="carousel-img"
             />
-          </div>
+          </div>{" "}
           <div>
-            <h3>Barcelona</h3>
-          </div>
+            <h3> Barcelona </h3>{" "}
+          </div>{" "}
           <div>
-            <h3>Thessaloniki</h3>
-          </div>
+            <h3> Thessaloniki </h3>{" "}
+          </div>{" "}
           <div>
             <img src={Lisbon} alt="Lisbon" className="carousel-img" />
-          </div>
+          </div>{" "}
           <div>
             <img
               src={BuenosAires}
               alt="Buenos Aires"
               className="carousel-img"
             />
-          </div>
+          </div>{" "}
           <div>
-            <h3>Lisbon</h3>
-          </div>
+            <h3> Lisbon </h3>{" "}
+          </div>{" "}
           <div>
-            <h3>Buenos Aires</h3>
-          </div>
-          <div>
-            <img src={Roma} alt="Roma" className="carousel-img" />
-          </div>
-          <div>
-            <img src={Viena} alt="Vienna" className="carousel-img" />
-          </div>
-          <div>
-            <h3>Roma</h3>
-          </div>
-          <div>
-            <h3>Vienna</h3>
-          </div>
+            <h3> Buenos Aires </h3>{" "}
+          </div>{" "}
           <div>
             <img src={Roma} alt="Roma" className="carousel-img" />
-          </div>
+          </div>{" "}
           <div>
             <img src={Viena} alt="Vienna" className="carousel-img" />
-          </div>
+          </div>{" "}
           <div>
-            <h3>Roma</h3>
-          </div>
+            <h3> Roma </h3>{" "}
+          </div>{" "}
           <div>
-            <h3>Vienna</h3>
-          </div>
-        </Slider>
+            <h3> Vienna </h3>{" "}
+          </div>{" "}
+          <div>
+            <img src={Roma} alt="Roma" className="carousel-img" />
+          </div>{" "}
+          <div>
+            <img src={Viena} alt="Vienna" className="carousel-img" />
+          </div>{" "}
+          <div>
+            <h3> Roma </h3>{" "}
+          </div>{" "}
+          <div>
+            <h3> Vienna </h3>{" "}
+          </div>{" "}
+        </Slider>{" "}
       </div>
     );
   }
