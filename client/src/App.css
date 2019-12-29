@@ -60,6 +60,7 @@ body {
 
   .carousel-img {
     width: 200px;
+    padding: 10px;
   }
 
   div>h3 {
@@ -74,7 +75,8 @@ body {
   }
 
   .carousel-img {
-    width: 350px;
+    width: 330px;
+    padding: 10px;
   }
 
   div>h3 {
@@ -85,7 +87,8 @@ body {
 
 @media (min-width: 1000px) {
   .carousel-img {
-    width: 500px
+    width: 500px;
+    padding: 10px;
   }
 }
 

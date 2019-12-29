@@ -4,12 +4,14 @@ import Recife from "../images/recife07.jpg";
 import Berlin from "../images/berlin.jpg";
 import Paris from "../images/paris.jpg";
 import Rio from "../images/rio.jpg";
-import Barcelona from "../images/barcelona.jpg";
-import Thessaloniki from "../images/thessaloniki.jpg";
+import Barcelona from "../images/barcelona2.jpg";
+import Thessaloniki from "../images/thessaloniki2.jpg";
 import Lisbon from "../images/lisboa.jpg";
 import BuenosAires from "../images/buenos-aires.jpg";
-import Roma from "../images/roma.jpg";
+import Roma from "../images/roma2.jpg";
 import Viena from "../images/viena.jpg";
+import Medellin from "../images/medellin.jpg";
+import Sydney from "../images/sydney.jpg";
 
 export default class extends React.Component {
   render() {
@@ -140,16 +142,16 @@ export default class extends React.Component {
             <h3> Vienna </h3>{" "}
           </div>{" "}
           <div>
-            <img src={Roma} alt="Roma" className="carousel-img" />
+            <img src={Medellin} alt="Medellín" className="carousel-img" />
           </div>{" "}
           <div>
-            <img src={Viena} alt="Vienna" className="carousel-img" />
+            <img src={Sydney} alt="Sydney" className="carousel-img" />
           </div>{" "}
           <div>
-            <h3> Roma </h3>{" "}
+            <h3> Medellín </h3>{" "}
           </div>{" "}
           <div>
-            <h3> Vienna </h3>{" "}
+            <h3> Sydney </h3>{" "}
           </div>{" "}
         </Slider>{" "}
       </div>

@@ -36,7 +36,8 @@ export default function Landingv2() {
         <Col
           style={style.profileStyle}
           xs={{ span: 1, offset: 9 }}
-          md={{ span: 1, offset: 1 }}
+          md={{ span: 1, offset: 11 }}
+          lg={{ span: 1, offset: 1 }}
         >
           <Profile className="profilepic" />
         </Col>
@@ -67,7 +68,11 @@ export default function Landingv2() {
         </Col>
       </Row>
       <Row>
-        <Col md={{ span: 12, offset: 1 }} style={style.carouselStyle}>
+        <Col
+          md={{ span: 11, offset: 1 }}
+          lg={{ span: 11, offset: 2 }}
+          style={style.carouselStyle}
+        >
           <Carousel syle={style.carouselStyle} />
         </Col>
       </Row>
