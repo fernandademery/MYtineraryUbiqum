@@ -1,13 +1,13 @@
 import React from "react";
 import { shallow } from "enzyme";
-import Landing from "./Landingv2";
-import toJson from 'enzyme-to-json';
+import Landing from "../Components/Landingv2.js";
+import toJson from "enzyme-to-json";
 
 it("Landing component should render without crashing", () => {
   shallow(<Landing />);
 });
 
 it("landing component snapshot with Enzyme", () => {
-    const wrapper = shallow(<Landing />);
-    expect(toJson(wrapper)).toMatchSnapshot();
+  const wrapper = shallow(<Landing />);
+  expect(toJson(wrapper)).toMatchSnapshot();
 });
