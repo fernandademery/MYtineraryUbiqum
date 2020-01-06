@@ -8,11 +8,16 @@ import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import thunk from "redux-thunk";
 import rootReducer from "./store/reducers/rootReducer";
+import { fetchCities } from "./store/actions/cityActions";
 
 const store = createStore(
   rootReducer,
   composeWithDevTools(applyMiddleware(thunk))
 );
+
+store
+  .dispatch(fetchCities("reactjs"))
+  .then(() => console.log(store.getState()));
 
 ReactDOM.render(
   <Provider store={store}>

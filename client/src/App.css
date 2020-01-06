@@ -65,6 +65,7 @@ body {
 
   div>h3 {
     font-size: 20px;
+    padding-right: 25px;
   }
 }
 
@@ -75,8 +76,8 @@ body {
   }
 
   .carousel-img {
-    width: 330px;
-    padding: 10px;
+    width: 320px;
+    padding: 15px;
   }
 
   div>h3 {

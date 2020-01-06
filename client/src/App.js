@@ -12,7 +12,8 @@ import LogIn from "./Components/LogIn.js";
 function App() {
   const style = {
     bodyStyle: {
-      margin: 0
+      margin: "0px",
+      padding: "0px"
     }
   };
   return (
