@@ -8,6 +8,7 @@ import { Form, Input } from "reactstrap";
 import Profile from "./Profile";
 import HamburgerMenu from "./HamburgerMenu";
 import "../App.css";
+import Footer from "./Footer";
 
 class Cities extends Component {
   constructor(/*props*/) {
@@ -108,6 +109,12 @@ class Cities extends Component {
               <div style={style.citiesStyle}>
                 <CityList cities={filteredCities} />
               </div>
+            </Col>
+          </Row>
+
+          <Row>
+            <Col>
+              <Footer></Footer>
             </Col>
           </Row>
         </div>

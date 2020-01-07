@@ -9,14 +9,9 @@ export default function citiesReducer(
 ) {
   switch (action.type) {
     case REQUEST_CITIES:
-      return Object.assign({}, state, {
-        isFetching: true
-      });
+      return { ...state, isFetching: true };
     case RECEIVE_CITIES:
-      return Object.assign({}, state, {
-        isFetching: false,
-        items: action.city
-      });
+      return { ...state, isFetching: false, items: action.city };
     default:
       return state;
   }

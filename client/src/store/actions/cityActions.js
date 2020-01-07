@@ -4,8 +4,7 @@ export const REQUEST_CITIES = "REQUEST_CITIES";
 
 function requestCities(cities) {
   return {
-    type: REQUEST_CITIES,
-    cities
+    type: REQUEST_CITIES
   };
 }
 

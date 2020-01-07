@@ -18,6 +18,8 @@ app.use(cors());
 
 app.use("/cities", require("./routes/cities"));
 
+app.use("/itineraries", require("./routes/itineraries"));
+
 // Importing DV keys:
 const db = require("./keys").mongoURI;
 
