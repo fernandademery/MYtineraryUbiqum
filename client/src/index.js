@@ -9,6 +9,7 @@ import { Provider } from "react-redux";
 import thunk from "redux-thunk";
 import rootReducer from "./store/reducers/rootReducer";
 import { fetchCities } from "./store/actions/cityActions";
+import { fetchItineraries } from "./store/actions/itineraryActions";
 
 const store = createStore(
   rootReducer,
@@ -17,6 +18,10 @@ const store = createStore(
 
 store
   .dispatch(fetchCities("reactjs"))
+  .then(() => console.log(store.getState()));
+
+store
+  .dispatch(fetchItineraries("reactjs"))
   .then(() => console.log(store.getState()));
 
 ReactDOM.render(

@@ -8,7 +8,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Cities from "./Components/Cities/Cities.js";
 import SignUp from "./Components/Landing/SignUp.js";
 import LogIn from "./Components/Landing/LogIn.js";
-import Itinerary from "./Components/Itinerary/Itinerary";
+import Itineraries from "./Components/Itinerary/Itineraries";
 
 function App() {
   const style = {
@@ -26,7 +26,7 @@ function App() {
             <Route path="/cities" component={Cities} />
             <Route path="/signup" component={SignUp} />
             <Route path="/login" component={LogIn} />
-            <Route path="/itinerary/:cityname" component={Itinerary} />
+            <Route path="/itinerary/:cityname" component={Itineraries} />
           </Switch>
         </div>
       </Col>

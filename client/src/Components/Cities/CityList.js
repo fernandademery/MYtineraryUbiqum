@@ -7,9 +7,11 @@ export default function CityList(props) {
 
   return (
     <div>
-      {cities.map((city, _id) => {
-        return <City key={_id} city={city} />;
-      })}
+      {" "}
+      {cities &&
+        cities.map((city, _id) => {
+          return <City key={_id} city={city} />;
+        })}{" "}
     </div>
   );
 }
