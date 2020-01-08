@@ -1,17 +1,17 @@
 import React from "react";
 import Slider from "react-slick";
-import Recife from "../images/recife07.jpg";
-import Berlin from "../images/berlin.jpg";
-import Paris from "../images/paris.jpg";
-import Rio from "../images/rio.jpg";
-import Barcelona from "../images/barcelona2.jpg";
-import Thessaloniki from "../images/thessaloniki2.jpg";
-import Lisbon from "../images/lisboa.jpg";
-import BuenosAires from "../images/buenos-aires.jpg";
-import Roma from "../images/roma2.jpg";
-import Viena from "../images/viena.jpg";
-import Medellin from "../images/medellin.jpg";
-import Sydney from "../images/sydney.jpg";
+import Recife from "../../images/recife07.jpg";
+import Berlin from "../../images/berlin.jpg";
+import Paris from "../../images/paris.jpg";
+import Rio from "../../images/rio.jpg";
+import Barcelona from "../../images/barcelona2.jpg";
+import Thessaloniki from "../../images/thessaloniki2.jpg";
+import Lisbon from "../../images/lisboa.jpg";
+import BuenosAires from "../../images/buenos-aires.jpg";
+import Roma from "../../images/roma2.jpg";
+import Viena from "../../images/viena.jpg";
+import Medellin from "../../images/medellin.jpg";
+import Sydney from "../../images/sydney.jpg";
 import { Col } from "react-bootstrap";
 
 export default class extends React.Component {

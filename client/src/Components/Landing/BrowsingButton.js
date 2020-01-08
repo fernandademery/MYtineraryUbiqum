@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "../circled-right-2.png";
+import Button from "../../circled-right-2.png";
 
 export default function BrowsingButton() {
   const style = {
@@ -13,7 +13,7 @@ export default function BrowsingButton() {
     <div marginTop="0">
       <button style={style.buttonStyle}>
         <img src={Button} alt="start browsing" width="80px" />
-      </button>
+      </button>{" "}
     </div>
   );
 }

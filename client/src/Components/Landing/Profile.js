@@ -1,5 +1,7 @@
-import React, { Component } from "react";
-import blankProfilePicture from "../blank-profile-picture.png";
+import React, {
+  Component
+} from "react";
+import blankProfilePicture from "../../blank-profile-picture.png";
 
 export default class Profile extends Component {
   constructor() {
@@ -22,13 +24,16 @@ export default class Profile extends Component {
       }
     };
 
-    return (
-      <img
-        style={style.profilePic}
-        src={blankProfilePicture}
-        alt="Login icon"
-        width="50px"
-      />
+    return ( <
+      img style = {
+        style.profilePic
+      }
+      src = {
+        blankProfilePicture
+      }
+      alt = "Login icon"
+      width = "50px" /
+      >
     );
   }
 }

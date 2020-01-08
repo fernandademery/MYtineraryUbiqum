@@ -24,17 +24,32 @@ export default function ctaCities() {
           cities!
         </p>{" "}
         <h2> Start browsing </h2> <BrowsingButton />
-        <p>Want to build your own MYtinerary?</p>
+        <p> Want to build your own MYtinerary ? </p>{" "}
         <Row style={style.rowlinks}>
-          <Col xs={4} md={{ span: 3, offset: 0 }}>
+          <Col
+            xs={4}
+            md={{
+              span: 3,
+              offset: 0
+            }}
+          >
             {" "}
             <LoginLink />
-          </Col>
-          <Col xs={{ span: 5, offset: 0 }} md={{ span: 3, offset: 0 }}>
+          </Col>{" "}
+          <Col
+            xs={{
+              span: 5,
+              offset: 0
+            }}
+            md={{
+              span: 3,
+              offset: 0
+            }}
+          >
             <CreateAccLink />
-          </Col>
-        </Row>
-      </div>
+          </Col>{" "}
+        </Row>{" "}
+      </div>{" "}
     </Col>
   );
 }

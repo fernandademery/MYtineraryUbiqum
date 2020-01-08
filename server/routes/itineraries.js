@@ -12,10 +12,10 @@ router.get("/all", (req, res) => {
         .catch(err => console.log(err))
 });
 
-router.get(":/city",
+router.get("/:city",
     (req, res) => {
         let cityRequested = req.params.city;
-        itineraryModel.findOne({
+        itineraryModel.find({
                 city: cityRequested
             })
             .then((result) => {

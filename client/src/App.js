@@ -3,11 +3,12 @@ import "./App.css";
 //import Landing from "./Components/Landing";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Col from "react-bootstrap/Col";
-import Landingv2 from "./Components/Landingv2";
+import Landingv2 from "./Components/Landing/Landingv2";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import Cities from "./Components/Cities.js";
-import SignUp from "./Components/SignUp.js";
-import LogIn from "./Components/LogIn.js";
+import Cities from "./Components/Cities/Cities.js";
+import SignUp from "./Components/Landing/SignUp.js";
+import LogIn from "./Components/Landing/LogIn.js";
+import Itinerary from "./Components/Itinerary/Itinerary";
 
 function App() {
   const style = {
@@ -25,6 +26,7 @@ function App() {
             <Route path="/cities" component={Cities} />
             <Route path="/signup" component={SignUp} />
             <Route path="/login" component={LogIn} />
+            <Route path="/itinerary/:cityname" component={Itinerary} />
           </Switch>
         </div>
       </Col>

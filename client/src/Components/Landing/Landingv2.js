@@ -1,11 +1,11 @@
 import React from "react";
-import Header from "./Header.js";
+import Header from "../Header.js";
 import { Container, Col, Row } from "react-bootstrap";
 import BrowsingButton from "./BrowsingButton.js";
 import Profile from "./Profile.js";
-import HamburgerMenu from "./HamburgerMenu";
+import HamburgerMenu from "../HamburgerMenu";
 import Carousel from "./Carousel.js";
-import "../App.css";
+import "../../App.css";
 import { Link } from "react-router-dom";
 
 export default function Landingv2() {

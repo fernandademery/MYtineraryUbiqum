@@ -1,5 +1,5 @@
 import React from "react";
-import Header from "./Header.js";
+import Header from "../Header.js";
 import CTACities from "./CTACities.js";
 
 export default function Landing() {
@@ -11,7 +11,7 @@ export default function Landing() {
   return (
     <div className="body-responsive">
       <Header />
-      <CTACities style={style.ctaStyle} />
+      <CTACities style={style.ctaStyle} />{" "}
     </div>
   );
 }
