@@ -13,7 +13,8 @@ export default function Itinerary({ itinerary }) {
     },
     imgStyle: {
       width: "90px",
-      borderRadius: "50%"
+      borderRadius: "50%",
+      padding: "5px"
     }
   };
 
