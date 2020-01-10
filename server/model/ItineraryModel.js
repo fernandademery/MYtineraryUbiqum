@@ -3,40 +3,43 @@ const mongoose = require("mongoose");
 const itinerarySchema = new mongoose.Schema({
     city: {
         type: String,
-        required: true
+        // required: true
+    },
+    _id: {
+        type: String
     },
     title: {
         type: String,
-        required: true,
-        unique: true
+        //required: true,
+        //unique: true
     },
     img: {
         type: String,
-        required: false
+        //required: false
     },
     author: {
         type: String,
-        required: true
+        //required: true
     },
     rating: {
         type: Number,
-        required: true
+        //required: true
     },
     duration: {
         type: Number,
-        required: true
+        //required: true
     },
     price: {
         type: Number,
-        required: false
+        //required: false
     },
     tag: {
         type: Array,
-        required: false
+        //required: false
     },
     activities: {
         type: Array,
-        required: true
+        //required: false
     }
 });
 

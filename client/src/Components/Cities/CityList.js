@@ -9,8 +9,8 @@ export default function CityList(props) {
     <div>
       {" "}
       {cities &&
-        cities.map((city, _id) => {
-          return <City key={_id} city={city} />;
+        cities.map(city => {
+          return <City key={city.name} city={city} />;
         })}{" "}
     </div>
   );

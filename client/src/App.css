@@ -157,3 +157,9 @@ body {
 .bm-overlay {
   background: rgba(0, 0, 0, 0.3);
 }
+
+/* Itinerary page */
+.flex-container {
+  display: flex;
+  flex-direction: row;
+}

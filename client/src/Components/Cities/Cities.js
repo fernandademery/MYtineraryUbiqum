@@ -49,6 +49,15 @@ class Cities extends Component {
       },
       citiesStyle: {
         marginTop: "20px"
+      },
+      footerStyle: {
+        position: "fixed",
+        bottom: "0",
+        width: "100%",
+        backgroundColor: "#F0F0F2",
+        margin: "0",
+        paddingTop: "5px",
+        paddingBottom: "5px"
       }
     };
 
@@ -125,7 +134,7 @@ class Cities extends Component {
               </div>{" "}
             </Col>{" "}
           </Row>
-          <Row>
+          <Row style={style.footerStyle}>
             <Col>
               <Footer> </Footer>{" "}
             </Col>{" "}
