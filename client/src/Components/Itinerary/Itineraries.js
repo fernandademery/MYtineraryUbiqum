@@ -8,6 +8,7 @@ import Profile from "../Landing/Profile";
 import HamburgerMenu from "../HamburgerMenu";
 import "../../App.css";
 import Footer from "../Footer";
+import { Link } from "react-router-dom";
 
 export class Itineraries extends Component {
   componentDidMount() {
@@ -33,6 +34,10 @@ export class Itineraries extends Component {
         paddingBottom: "15px",
         marginTop: "15px",
         marginBottom: "15px"
+      },
+      linkStyle: {
+        color: "brown",
+        marginTop: "20px"
       },
       footerStyle: {
         position: "fixed",
@@ -113,6 +118,13 @@ export class Itineraries extends Component {
                   );
                 })}
             </div>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <Link to="/cities">
+              <h3 style={style.linkStyle}>Choose another city</h3>
+            </Link>
           </Col>
         </Row>
         <Row style={style.footerStyle}>
