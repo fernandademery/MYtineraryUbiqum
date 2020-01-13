@@ -11,11 +11,8 @@ import { Link } from "react-router-dom";
 export default function Landingv2() {
   const style = {
     bodyStyle: {
-      //justifyContent: "right",
       margin: "0",
       padding: "0"
-      // marginRight: "0px",
-      // marginLeft: "0px"
     },
     pStyle: {
       marginTop: "40px"
@@ -79,10 +76,10 @@ export default function Landingv2() {
             offset: 2
           }}
         >
-          <p style={style.pStyle} className="pLanding">
+          <h4 style={style.pStyle} className="pLanding">
             Find your perfect trip, designed by insiders who know and love their
             cities!{" "}
-          </p>{" "}
+          </h4>{" "}
         </Col>{" "}
       </Row>{" "}
       <Row>

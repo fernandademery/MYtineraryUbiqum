@@ -70,10 +70,22 @@ export default class extends React.Component {
         }
       ]
     };
+
+    const style = {
+      headerStyle: {
+        fontSize: "30px"
+      }
+    };
+
     return (
       <div>
-        <h2> Popular MYtineraries </h2>{" "}
-        <Col md={{ span: 10, offset: 1 }}>
+        <h2 style={style.headerStyle}> Popular MYtineraries </h2>{" "}
+        <Col
+          md={{
+            span: 10,
+            offset: 1
+          }}
+        >
           <Slider {...settings}>
             <div>
               <img src={Recife} alt="Recife" className="carousel-img" />
@@ -156,7 +168,7 @@ export default class extends React.Component {
               <h3> Sydney </h3>{" "}
             </div>{" "}
           </Slider>{" "}
-        </Col>
+        </Col>{" "}
       </div>
     );
   }

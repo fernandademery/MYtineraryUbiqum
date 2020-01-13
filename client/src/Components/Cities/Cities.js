@@ -47,12 +47,16 @@ class Cities extends Component {
         top: "55px",
         position: "fixed"
       },
+      inputStyle: {
+        height: "40px",
+        textSize: "30px"
+      },
       citiesStyle: {
         marginTop: "20px"
       },
       footerStyle: {
         position: "fixed",
-        bottom: "0",
+        bottom: "-2px",
         width: "100%",
         backgroundColor: "#F0F0F2",
         margin: "0",
@@ -94,9 +98,9 @@ class Cities extends Component {
           <Col>
             <Header />
           </Col>{" "}
-        </Row>
+        </Row>{" "}
         <div>
-          <h1> Cities </h1>{" "}
+          {" "}
           <Row>
             <Col
               xs={{
@@ -114,6 +118,8 @@ class Cities extends Component {
                   placeholder="Filter by city..."
                   onKeyUp={this.handleChange}
                   onSubmit="return false"
+                  bsSize="lg"
+                  style={style.inputStyle}
                 />
               </Form>{" "}
             </Col>{" "}
@@ -133,7 +139,7 @@ class Cities extends Component {
                 <CityList cities={filteredCities} />{" "}
               </div>{" "}
             </Col>{" "}
-          </Row>
+          </Row>{" "}
           <Row style={style.footerStyle}>
             <Col>
               <Footer> </Footer>{" "}

@@ -26,6 +26,7 @@ body {
   padding: 0;
   margin: 0px;
   margin-right: 0px;
+  height: 100vh;
 }
 
 .App {
@@ -46,8 +47,12 @@ body {
     width: 170px;
   }
 
-  div>h3 {
+  div > h3 {
     font-size: 15px;
+  }
+
+  .flex-container {
+    justify-content: space-around !important;
   }
 }
 
@@ -63,7 +68,7 @@ body {
     padding: 10px;
   }
 
-  div>h3 {
+  div > h3 {
     font-size: 20px;
     padding-right: 25px;
   }
@@ -75,15 +80,18 @@ body {
     font-weight: bold;
   }
 
+  .flex-container {
+    justify-content: space-around !important;
+  }
+
   .carousel-img {
     width: 320px;
     padding: 15px;
   }
 
-  div>h3 {
+  div > h3 {
     font-size: 30px;
   }
-
 }
 
 @media (min-width: 1000px) {
@@ -140,7 +148,7 @@ body {
 .bm-menu {
   background: #373a47;
   padding: 2.5em 1.5em 0;
-  font-size: 1.15em;
+  font-size: 20px;
 }
 
 /* Morph shape necessary with bubble or elastic */
@@ -162,5 +170,36 @@ body {
 .flex-container {
   display: flex !important;
   flex-direction: row !important;
-  justify-content: space-evenly !important;
+}
+
+.card-title {
+  font-size: 18px !important;
+}
+
+.card-subtitle {
+  font-size: 15px !important;
+}
+
+.card-text {
+  font-size: 13px !important;
+}
+
+.rc-rate {
+  list-style-type: none;
+}
+
+.rc-rate-star {
+  display: inline;
+}
+
+.rc-rate-star > div {
+  display: inline;
+  position: relative;
+  left: -25px;
+}
+
+.rc-rate-star-first,
+.rc-rate-star-second,
+.rc-rate-star-third {
+  display: inline;
 }

@@ -10,21 +10,10 @@ import "../../App.css";
 import Footer from "../Footer";
 
 export class Itineraries extends Component {
-  constructor() {
-    super();
-
-    this.state = {
-      itinerary: []
-    };
-  }
   componentDidMount() {
     console.log(this.props);
     const { cityname } = this.props.match.params;
     this.props.fetchItineraries(cityname);
-
-    this.setState({
-      itinerary: this.props.itineraries.itineraries
-    });
   }
   render() {
     console.log(this.props);

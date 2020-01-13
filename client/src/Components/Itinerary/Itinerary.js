@@ -1,6 +1,6 @@
 import React from "react";
 import { Card } from "react-bootstrap";
-import StarRating from "react-bootstrap-star-rating";
+import Rate from "rc-rate";
 import "../../App.css";
 
 export default function Itinerary({ itinerary }) {
@@ -20,24 +20,28 @@ export default function Itinerary({ itinerary }) {
 
   return (
     <div style={style.itineraryStyle}>
-      <Card className="flex-container">
-        <div>
-          <img style={style.imgStyle} src={itinerary.img} alt="Profile" />
-          <h4>{itinerary.author}</h4>
-        </div>
-        <Card.Body>
-          <Card.Title title={itinerary.title} key={itinerary.title}>
-            {itinerary.title}
-          </Card.Title>
-          <Card.Subtitle className="mb-2 text-muted" key={itinerary._id}>
-            {itinerary.rating} likes {itinerary.duration} hours{" "}
-            <StarRating
-              style={style.ratingStyle}
-              defaultValue={itinerary.price}
-              readonly={true}
-            />
-          </Card.Subtitle>
-          <Card.Text>{itinerary.tag}</Card.Text>
+      <Card>
+        <Card.Body className="flex-container">
+          <div>
+            <img style={style.imgStyle} src={itinerary.img} alt="Profile" />
+            <h4>{itinerary.author}</h4>
+          </div>
+          <div>
+            <Card.Title title={itinerary.title} key={itinerary.title}>
+              {itinerary.title}
+            </Card.Title>
+            <Card.Subtitle className="mb-2 text-muted" key={itinerary._id}>
+              {itinerary.rating} likes {itinerary.duration} hours{" "}
+              <Rate
+                style={style.ratingStyle}
+                count={1}
+                value={itinerary.price}
+                character="$"
+                onChange="return false"
+              />
+            </Card.Subtitle>
+            <Card.Text>{itinerary.tag}</Card.Text>
+          </div>
         </Card.Body>
       </Card>
     </div>
