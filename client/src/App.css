@@ -47,7 +47,7 @@ body {
     width: 170px;
   }
 
-  div > h3 {
+  div>h3 {
     font-size: 15px;
   }
 
@@ -68,7 +68,7 @@ body {
     padding: 10px;
   }
 
-  div > h3 {
+  div>h3 {
     font-size: 20px;
     padding-right: 25px;
   }
@@ -89,7 +89,7 @@ body {
     padding: 15px;
   }
 
-  div > h3 {
+  div>h3 {
     font-size: 30px;
   }
 }
@@ -184,22 +184,11 @@ body {
   font-size: 13px !important;
 }
 
-.rc-rate {
-  list-style-type: none;
-}
-
-.rc-rate-star {
-  display: inline;
-}
-
-.rc-rate-star > div {
-  display: inline;
-  position: relative;
-  left: -25px;
-}
-
-.rc-rate-star-first,
-.rc-rate-star-second,
-.rc-rate-star-third {
-  display: inline;
+/* Button activities */
+.btn-info {
+  background-color: #F2BBD5 !important;
+  color: #8C2A3C !important;
+  font-size: 15px !important;
+  border: none !important;
+  width: 100%;
 }

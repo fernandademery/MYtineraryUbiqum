@@ -9,6 +9,7 @@ import HamburgerMenu from "../HamburgerMenu";
 import "../../App.css";
 import Footer from "../Footer";
 import { Link } from "react-router-dom";
+// import { Activities } from "./Activities";
 
 export class Itineraries extends Component {
   componentDidMount() {
