@@ -47,7 +47,7 @@ body {
     width: 170px;
   }
 
-  div>h3 {
+  div > h3 {
     font-size: 15px;
   }
 
@@ -68,7 +68,7 @@ body {
     padding: 10px;
   }
 
-  div>h3 {
+  div > h3 {
     font-size: 20px;
     padding-right: 25px;
   }
@@ -89,7 +89,7 @@ body {
     padding: 15px;
   }
 
-  div>h3 {
+  div > h3 {
     font-size: 30px;
   }
 }
@@ -186,9 +186,60 @@ body {
 
 /* Button activities */
 .btn-info {
-  background-color: #F2BBD5 !important;
-  color: #8C2A3C !important;
+  background-color: #f2bbd5 !important;
+  color: #8c2a3c !important;
   font-size: 15px !important;
   border: none !important;
+  border-radius: 0% !important;
   width: 100%;
+}
+
+/* Slider activity */
+@media (max-width: 400px) {
+  .img-activity {
+    width: 200px;
+  }
+
+  .activity-desc {
+    font-size: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
+
+@media (min-width: 400px) {
+  .img-activity {
+    width: 230px;
+  }
+
+  .activity-desc {
+    font-size: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}
+
+@media (min-width: 600px) {
+  .img-activity {
+    width: 230px;
+  }
+
+  .activity-desc {
+    font-size: 15px;
+  }
+}
+
+@media (min-width: 1000px) {
+  .img-activity {
+    width: 280px;
+  }
+}
+
+.site-button {
+  background-color: #8c2a3c !important;
+  border: none !important;
+}
+
+.body-responsive {
+  width: 100% !important;
 }

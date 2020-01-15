@@ -14,6 +14,7 @@ export class Itinerary extends Component /*({ itinerary })*/ {
     };
   }
   componentDidMount() {
+    // "itinerary" was passed in as prop from the Itineraries component - where we're mapping through all itineraries.
     const { itinerary } = this.props;
     console.log(itinerary.activities);
     this.setState({
@@ -80,16 +81,30 @@ export class Itinerary extends Component /*({ itinerary })*/ {
           </Card.Body>
           <div className="container-activities">
             <div>
-              <Button
-                style={style.buttonStyle}
-                variant="info"
-                onClick={() => this.setState({ expand: !this.state.expand })}
-              >
-                View all
-              </Button>
+              {/* If expand is false, the button says "View all", else the button says "back" */}
+              {this.state.expand ? (
+                <Button
+                  style={style.buttonStyle}
+                  variant="info"
+                  onClick={() => this.setState({ expand: !this.state.expand })}
+                >
+                  Back
+                </Button>
+              ) : (
+                <Button
+                  style={style.buttonStyle}
+                  variant="info"
+                  onClick={() => this.setState({ expand: !this.state.expand })}
+                >
+                  View all
+                </Button>
+              )}
             </div>
             <div className="container-activ-expand">
-              {expand && <Activities />}
+              {/* The same way we passed one itinerary as props from the Itineraries component to the Itinerary component
+  we're now passing the activities as props to the Activities component for that I can refer to one itinerary
+  and specify that I'm only passing the activities "activities={itinerary.activities}". */}
+              {expand && <Activities activities={itinerary.activities} />}
             </div>
           </div>
         </Card>

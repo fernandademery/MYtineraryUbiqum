@@ -3,7 +3,8 @@ const mongoose = require("mongoose");
 const childSchema = mongoose.Schema({
     title: String,
     description: String,
-    img: Array
+    img: Array,
+    link: String
 });
 
 const itinerarySchema = new mongoose.Schema({

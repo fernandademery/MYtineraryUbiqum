@@ -7,7 +7,7 @@ export default function Footer() {
     <Link to="/">
       <footer>
         <img src={homeIcon} alt="Home icon" width="40px" />
-      </footer>
+      </footer>{" "}
     </Link>
   );
 }

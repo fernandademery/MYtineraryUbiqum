@@ -26,7 +26,9 @@ export class Itineraries extends Component {
 
     const style = {
       bodyStyle: {
-        padding: "0px"
+        padding: "0px",
+        position: "relative",
+        minHeight: "100vh"
       },
       cityStyle: {
         backgroundColor: "#8C2A3C",
@@ -42,13 +44,16 @@ export class Itineraries extends Component {
       },
       footerStyle: {
         position: "fixed",
-        bottom: "0",
+        bottom: "-2px",
         width: "100%",
         backgroundColor: "#F0F0F2",
         margin: "0",
         paddingTop: "5px",
         paddingBottom: "5px",
-        marginTop: "30px"
+        marginTop: "50px"
+      },
+      contentwrapStyle: {
+        paddingBottom: "5rem"
       }
     };
 
@@ -58,76 +63,80 @@ export class Itineraries extends Component {
         fluid={true}
         style={style.bodyStyle}
       >
-        <Row>
-          <Col
-            xs={{
-              span: 1,
-              offset: 9
-            }}
-            md={{
-              span: 1,
-              offset: 10
-            }}
-            lg={{
-              span: 1,
-              offset: 11
-            }}
-          >
-            <Profile className="profilepic" />
-          </Col>{" "}
-        </Row>{" "}
-        <Row>
-          <Col>
-            <HamburgerMenu />{" "}
-          </Col>{" "}
-        </Row>
-        <Row>
-          <Col>
-            <Header />
-          </Col>{" "}
-        </Row>
-        <Row>
-          <Col
-            xs={{
-              span: 10,
-              offset: 1
-            }}
-            md={{
-              span: 8,
-              offset: 2
-            }}
-          >
-            <h1 style={style.cityStyle}>{cityname}</h1>
-          </Col>
-        </Row>
-        <Row>
-          <Col
-            xs={{
-              span: 10,
-              offset: 1
-            }}
-            md={{
-              span: 8,
-              offset: 2
-            }}
-          >
-            <div>
-              {itineraries &&
-                itineraries.map(itinerary => {
-                  return (
-                    <Itinerary itinerary={itinerary} key={itinerary._id} />
-                  );
-                })}
-            </div>
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <Link to="/cities">
-              <h3 style={style.linkStyle}>Choose another city</h3>
-            </Link>
-          </Col>
-        </Row>
+        <div style={style.contentwrapStyle} className="content-wrap">
+          <Row>
+            <Col
+              xs={{
+                span: 1,
+                offset: 9
+              }}
+              md={{
+                span: 1,
+                offset: 10
+              }}
+              lg={{
+                span: 1,
+                offset: 11
+              }}
+            >
+              <Profile className="profilepic" />
+            </Col>{" "}
+          </Row>{" "}
+          <Row>
+            <Col>
+              <HamburgerMenu />{" "}
+            </Col>{" "}
+          </Row>
+          <Row>
+            <Col>
+              <Header />
+            </Col>{" "}
+          </Row>
+          <Row>
+            <Col
+              xs={{
+                span: 10,
+                offset: 1
+              }}
+              md={{
+                span: 8,
+                offset: 2
+              }}
+            >
+              <h1 style={style.cityStyle}>{cityname}</h1>
+            </Col>
+          </Row>
+          <Row>
+            <Col
+              xs={{
+                span: 10,
+                offset: 1
+              }}
+              md={{
+                span: 8,
+                offset: 2
+              }}
+            >
+              <div>
+                {/* In this loop, I'm mapping through itineraries and returning the Itinerary component for each itinerary
+    this "itinerary={itinerary}" is passing ONE itinerary through props to the Itinerary component*/}
+                {itineraries &&
+                  itineraries.map(itinerary => {
+                    return (
+                      <Itinerary itinerary={itinerary} key={itinerary._id} />
+                    );
+                  })}
+              </div>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <Link to="/cities">
+                <h3 style={style.linkStyle}>Choose another city</h3>
+              </Link>
+            </Col>
+          </Row>
+        </div>
         <Row style={style.footerStyle}>
           <Col>
             <Footer> </Footer>{" "}

@@ -1,54 +1,50 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-//import { fetchItineraries } from "../../store/actions/itineraryActions";
-// import Activity from "./Activity";
-// import Itinerary from "./Itinerary";
+import React from "react";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
+import Activity from "./Activity";
 
-export class Activities extends Component {
-  constructor() {
-    super();
-    this.state = {
-      expand: false,
-      activities: []
-    };
-  }
-
-  componentDidMount() {
-    console.log(this.props.itineraries.itineraries);
-    const { itineraries } = this.props.itineraries;
-    console.log(itineraries);
-    this.setState({
-      activities: itineraries.map(itinerary => {
-        return itinerary.activities;
-      })
-    });
-  }
-
-  render() {
-    console.log(this.state);
-    const { activities } = this.state;
-    console.log(activities);
-    return (
-      <div>
-        {activities.map((activity, i) => {
-          return activity.map((spot, i) => {
-            return <h1>{spot.title}</h1>;
-          });
-        })}
-      </div>
-    );
-  }
-}
-
-const mapStateToProps = (state, ownProps) => {
-  console.log(ownProps);
-  return {
-    itineraries: state.itineraries
+// this ({activities}) is receiving the activities that I sent from Itinerary component as props.
+export default function Activities({ activities }) {
+  const style = {
+    h2Style: {
+      textAlign: "left",
+      marginTop: "10px",
+      marginLeft: "10px"
+    }
   };
-};
 
-// const mapDispatchToProps = dispatch => ({
-//   fetchItineraries: cityname => dispatch(fetchItineraries(cityname))
-// });
-
-export default connect(mapStateToProps /*, mapDispatchToProps*/)(Activities);
+  const responsive = {
+    superLargeDesktop: {
+      // the naming can be any, depends on you.
+      breakpoint: { max: 4000, min: 3000 },
+      items: 5
+    },
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 3
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 1
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 1
+    }
+  };
+  return (
+    <div>
+      <h2 style={style.h2Style}>Activities:</h2>
+      <Carousel
+        responsive={responsive}
+        showDots={true}
+        infinite={true}
+        keyBoardControl={true}
+      >
+        {activities.map((activity, i) => {
+          return <Activity activity={activity} />;
+        })}
+      </Carousel>
+    </div>
+  );
+}
