@@ -1,27 +1,28 @@
 import React from "react";
 import { bubble as Menu } from "react-burger-menu";
 import "../App.css";
+import { Link } from "react-router-dom";
 
 export default props => {
   return (
     <Menu>
-      <a className="menu-item" href="/">
+      <Link className="menu-item" activeClassName="active" to="/">
         Home
-      </a>
+      </Link>
 
-      <a className="menu-item" href="/mytineraries">
+      <Link className="menu-item" activeClassName="active" to="/cities">
         MYtineraries
-      </a>
+      </Link>
 
       <a className="menu-item" href="/about">
         About us
       </a>
-      <a className="menu-item" href="/login">
+      <Link className="menu-item" to="/login">
         Log in
-      </a>
-      <a className="menu-item" href="signup">
+      </Link>
+      <Link className="menu-item" to="/signup">
         Sign up
-      </a>
+      </Link>
     </Menu>
   );
 };
