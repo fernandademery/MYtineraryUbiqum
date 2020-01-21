@@ -2,39 +2,8 @@ const express = require("express");
 const router = express.Router();
 const userModel = require("../model/userModel");
 
-//const commonValidations = require("../validations/signup");
-const bcrypt = require("bcrypt");
-//const isEmpty = require("lodash/isEmpty");
-
-// function validateInput(data, otherValidations) {
-//     let {
-//         errors
-//     } = otherValidations(data);
-
-//     return userModel.query({
-//         where: {
-//             email: data.email
-//         },
-//         orWhere: {
-//             username: data.username
-//         }
-//     }).fetch().then(user => {
-//         if (user) {
-//             if (user.get('username') === data.username) {
-//                 errors.username = 'There is user with such username';
-//             }
-//             if (user.get('email') === data.email) {
-//                 errors.email = 'There is user with such email';
-//             }
-//         }
-
-//         return {
-//             errors,
-//             isValid: isEmpty(errors)
-//         };
-//     })
-
-// }
+const bcrypt = require("bcryptjs");
+const validateRegisterInput = require("../validations/signup");
 
 // router.post('/', (req, res) => {
 //     validateInput(req.body, commonValidations).then(({
@@ -78,31 +47,61 @@ const bcrypt = require("bcrypt");
 // });
 
 router.post("/", (req, res) => {
-    const newUser = new userModel({
-        const {
-            username,
-            email,
-            password,
-            firstname,
-            lastname,
-            picture
-        } = req.body;
-        // const password_digest = bcrypt.hashSync(password, 10);
-    });
-    newUser
+  const {
+    errors,
+    isValid
+  } = validateRegisterInput(req.body);
+  // Check Validation
+  if (!isValid) {
+    return res.status(400).json(errors);
+  }
+
+  userModel.findOne({
+    email: req.body.email
+  }).then(user => {
+    if (user) {
+      errors.message = "Email already exists";
+      return res.status(300).json(errors);
+    }
+  });
+
+  userModel.findOne({
+    username: req.body.username
+  }).then(user => {
+    if (user) {
+      errors.message = "This username already exists";
+      return res.status(400).json(errors);
+    }
+  });
+
+  const newUser = new userModel({
+    username: req.body.username,
+    email: req.body.email,
+    password: req.body.password,
+    passwordConfirmation: req.body.passwordConfirmation,
+    firstname: req.body.firstname,
+    lastname: req.body.lastname,
+    picture: req.body.picture
+  });
+  bcrypt.genSalt(10, (err, salt) => {
+    bcrypt.hash(newUser.password, salt, (err, hash) => {
+      if (err) throw err;
+      newUser.password = hash;
+      newUser
         .save()
-        .then(user => {
-            res.send(user);
-        })
-        .catch(err => {
-            console.log("error", err.errors.name.kind);
-            if (err.errors.name.kind === "unique") {
-                res.status(500).send("City already exists");
-            } else {
-                res.status(500).send("Unknown error");
-            }
-        });
+        .then(user => res.send(user))
+        .catch(err => console.log("error", err));
+    });
+  });
 });
 
+router.get("/all", (req, res) => {
+  userModel
+    .find({})
+    .then(files => {
+      res.send(files);
+    })
+    .catch(err => console.log(err));
+});
 
 module.exports = router;

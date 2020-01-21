@@ -20,6 +20,8 @@ app.use("/cities", require("./routes/cities"));
 
 app.use("/itineraries", require("./routes/itineraries"));
 
+app.use("/users", require("./routes/users"));
+
 // Importing DV keys:
 const db = require("./keys").mongoURI;
 

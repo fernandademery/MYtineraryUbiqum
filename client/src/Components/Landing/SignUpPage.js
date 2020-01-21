@@ -3,10 +3,12 @@ import { Row, Col, Container } from "react-bootstrap";
 import SignUp from "./SignUp";
 import { connect } from "react-redux";
 import { userSignupRequest } from "../../store/actions/signupActions";
+import PropTypes from "prop-types";
 
 class SignUpPage extends Component {
   render() {
     const { userSignupRequest } = this.props;
+    console.log(userSignupRequest);
 
     return (
       <Container>
@@ -20,13 +22,17 @@ class SignUpPage extends Component {
   }
 }
 
-// SignUpPage.propTypes = {
-//   userSignupRequest: React.propTypes.func.isRequired
-// };
+SignUpPage.propTypes = {
+  userSignupRequest: PropTypes.func.isRequired
+};
 
-export default connect(
-  state => {
-    return {};
-  },
-  { userSignupRequest }
-)(SignUpPage);
+const mapStateToProps = (state, ownProps) => {
+  console.log(state);
+  return {};
+};
+
+const mapDispatchToProps = dispatch => ({
+  userSignupRequest: userData => dispatch(userSignupRequest(formData))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignUpPage);

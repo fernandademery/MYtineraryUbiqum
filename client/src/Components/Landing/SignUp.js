@@ -1,7 +1,14 @@
 import React, { Component } from "react";
 import Form from "react-bootstrap/Form";
+import PropTypes from "prop-types";
 
-export default class SignUp extends Component {
+import { connect } from "react-redux";
+import {
+  userSignupRequest,
+  fetchUsers
+} from "../../store/actions/signupActions";
+
+class SignUp extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -23,8 +30,8 @@ export default class SignUp extends Component {
 
   onSubmit(e) {
     e.preventDefault();
-    console.log(this.state);
-    //this.props.userSignupRequest(this.state);
+
+    this.props.userSignupRequest(this.state);
   }
 
   render() {
@@ -117,6 +124,16 @@ export default class SignUp extends Component {
   }
 }
 
-// SignUp.propTypes = {
-//   userSignupRequest: React.propTypes.func.isRequired
-// };
+SignUp.propTypes = {
+  userSignupRequest: PropTypes.func.isRequired
+};
+
+const mapStateToProps = state => {
+  return {
+    users: state.users
+  };
+};
+
+export default connect(mapStateToProps, { fetchUsers, userSignupRequest })(
+  SignUp
+);
