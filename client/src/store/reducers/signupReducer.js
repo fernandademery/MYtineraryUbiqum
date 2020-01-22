@@ -6,7 +6,8 @@ const usersReducer = (state = [], action = {}) => {
       return action.users;
     case ADD_USER:
       console.log("reducer");
-      return (state = [...state, { message: action.payload }]);
+      return (state = [...state, { message: action.payload.error }]);
+
     default:
       return state;
   }

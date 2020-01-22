@@ -5,47 +5,6 @@ const userModel = require("../model/userModel");
 const bcrypt = require("bcryptjs");
 const validateRegisterInput = require("../validations/signup");
 
-// router.post('/', (req, res) => {
-//     validateInput(req.body, commonValidations).then(({
-//         errors,
-//         isValid
-//     }) => {
-//         if (isValid) {
-//             const {
-//                 username,
-//                 email,
-//                 password,
-//                 firstname,
-//                 lastname,
-//                 picture
-//             } = req.body;
-//             const password_digest = bcrypt.hashSync(password, 10);
-
-//             userModel.forge({
-//                     username,
-//                     email,
-//                     password_digest,
-//                     firstname,
-//                     lastname,
-//                     picture
-
-//                 }, {
-//                     hasTimestamps: true
-//                 }).save()
-//                 .then(user => {
-//                     res.send(user);
-//                 })
-//                 .catch(err => res.status(500).json({
-//                     error: err
-//                 }));
-
-//         } else {
-//             res.status(400).json(errors);
-//         }
-//     });
-
-// });
-
 router.post("/", (req, res) => {
   const {
     errors,

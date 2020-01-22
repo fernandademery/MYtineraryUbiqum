@@ -6,8 +6,8 @@ import Col from "react-bootstrap/Col";
 import Landingv2 from "./Components/Landing/Landingv2";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Cities from "./Components/Cities/Cities.js";
-import SignUp from "./Components/Landing/SignUp.js";
-import LogIn from "./Components/Landing/LogIn.js";
+import SignUp from "./Components/User/SignUp.js";
+import LogIn from "./Components/User/LogIn.js";
 import Itineraries from "./Components/Itinerary/Itineraries";
 
 function App() {

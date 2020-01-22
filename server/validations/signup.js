@@ -9,9 +9,9 @@ module.exports = function validateRegisterInput(data) {
   data.lastname = !isEmpty(data.lastname) ? data.lastname : "";
   data.email = !isEmpty(data.email) ? data.email : "";
   data.password = !isEmpty(data.password) ? data.password : "";
-  data.passwordConfirmation = !isEmpty(data.passwordConfirmation)
-    ? data.passwordConfirmation
-    : "";
+  data.passwordConfirmation = !isEmpty(data.passwordConfirmation) ?
+    data.passwordConfirmation :
+    "";
   //- NEW ENTRIES
 
   data.picture = !isEmpty(data.picture) ? data.picture : "";
@@ -22,7 +22,7 @@ module.exports = function validateRegisterInput(data) {
       max: 30
     })
   ) {
-    errors.username = "Name must be between 2 and 30 characters";
+    errors.message = "Name must be between 2 and 30 characters";
   }
 
   if (
@@ -31,7 +31,7 @@ module.exports = function validateRegisterInput(data) {
       max: 30
     })
   ) {
-    errors.firstname = "First name must be between 2 and 30 characters";
+    errors.message = "First name must be between 2 and 30 characters";
   }
 
   if (
@@ -40,23 +40,23 @@ module.exports = function validateRegisterInput(data) {
       max: 30
     })
   ) {
-    errors.lastname = "Last name must be between 2 and 30 characters";
+    errors.message = "Last name must be between 2 and 30 characters";
   }
 
   if (Validator.isEmpty(data.username)) {
-    errors.username = "Username is required";
+    errors.message = "Username is required";
   }
 
   if (Validator.isEmpty(data.email)) {
-    errors.email = "Email field is required";
+    errors.message = "Email field is required";
   }
 
   if (!Validator.isEmail(data.email)) {
-    errors.email = "Email is invalid";
+    errors.message = "Email is invalid";
   }
 
   if (Validator.isEmpty(data.password)) {
-    errors.password = "Password field is required";
+    errors.message = "Password field is required";
   }
 
   if (
@@ -65,15 +65,15 @@ module.exports = function validateRegisterInput(data) {
       max: 30
     })
   ) {
-    errors.password =
+    errors.message =
       "Password must be at least 6 characters (max 30 characters)";
   }
 
   if (Validator.isEmpty(data.passwordConfirmation)) {
-    errors.passwordConfirmation = "Confirm Password field is required";
+    errors.message = "Confirm Password field is required";
   } else {
     if (!Validator.equals(data.password, data.passwordConfirmation)) {
-      errors.passwordConfirmation = "Passwords must match";
+      errors.message = "Passwords must match";
     }
   }
 

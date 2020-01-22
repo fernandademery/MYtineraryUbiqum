@@ -11,12 +11,23 @@ class SignUpPage extends Component {
     console.log(userSignupRequest);
 
     return (
-      <Container>
+      <Container
+        className="themed-container"
+        fluid={true}
+        style={style.bodyStyle}
+      >
+        {" "}
         <Row>
-          <Col md={{ span: 4, offset: 4 }} xs={4}>
-            <SignUp userSignupRequest={userSignupRequest} />
-          </Col>
-        </Row>
+          <Col
+            md={{
+              span: 4,
+              offset: 4
+            }}
+            xs={4}
+          >
+            <SignUp userSignupRequest={userSignupRequest} />{" "}
+          </Col>{" "}
+        </Row>{" "}
       </Container>
     );
   }
