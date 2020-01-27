@@ -35,3 +35,8 @@ mongoose
   })
   .then(() => console.log("Connection to Mongo DB established"))
   .catch(err => console.log(err));
+
+// Importing passport for login authentication:
+const passport = require("passport");
+app.use(passport.initialize());
+require("./config/passport");
