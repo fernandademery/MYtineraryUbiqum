@@ -63,4 +63,75 @@ router.get("/all", (req, res) => {
     .catch(err => console.log(err));
 });
 
+// Login POST route:
+const key = require("../keys");
+const jwt = require("jsonwebtoken");
+
+// const payload = {
+//   id: userModel._id,
+//   username: userModel.username,
+//   avatarPicture: userModel.picture
+// };
+// const options = {
+//   expiresIn: 2592000
+// };
+// jwt.sign(
+//   payload,
+//   key.secretOrKey,
+//   options,
+//   (err, token) => {
+//     if (err) {
+//       res.json({
+//         success: false,
+//         token: "There was an error"
+//       });
+//     } else {
+//       res.json({
+//         success: true,
+//         token: token
+//       });
+//     }
+//   }
+// );
+const createJWT = (user, key, duration) => {
+  var token = jwt.sign(user.toJSON(), key, {
+    expiresIn: duration // 1 week
+  });
+  return token;
+};
+
+router.post("/login", (req, res) => {
+  userModel.findOne({
+    username: req.body.username
+  }, (err, user) => {
+    if (err) throw err;
+    if (!user) {
+      res.send({
+        sucess: false,
+        message: "Authentication failed. User not found."
+      });
+    } else {
+      bcrypt.compare(req.body.password, user.password, function (
+        err,
+        match
+      ) {
+        if (match) {
+          res.json({
+            success: true,
+            token: "JWT" + createJWT(user, key, 604800)
+          });
+        } else {
+          res.json({
+            success: false,
+            message: "Authentication failed. Wrong password."
+          });
+        }
+      })
+    }
+  })
+})
+
+
+
+
 module.exports = router;

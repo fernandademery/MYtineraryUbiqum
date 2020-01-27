@@ -40,7 +40,6 @@ class SignUp extends Component {
     e.preventDefault();
 
     this.props.userSignupRequest(this.state);
-    console.log(this.state);
   }
 
   render() {
@@ -180,6 +179,9 @@ class SignUp extends Component {
                     onChange={this.onChange}
                   />{" "}
                 </Form.Group>
+                {this.props.error.error && (
+                  <h3 className="error"> {this.props.error.error} </h3>
+                )}
                 <button className="button-signup"> Sign up </button>{" "}
               </form>
             </Col>
@@ -201,7 +203,8 @@ SignUp.propTypes = {
 
 const mapStateToProps = state => {
   return {
-    users: state.users
+    users: state.users,
+    error: state.error
   };
 };
 

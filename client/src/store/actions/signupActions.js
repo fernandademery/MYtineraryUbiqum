@@ -26,7 +26,6 @@ export function addUserError(error) {
 
 export function fetchUsers(email) {
   return dispatch => {
-    // eslint-disable-next-line quotes
     fetch(`/users/${email}`)
       .then(res => res.json())
       .then(email => dispatch(setUsers(email)));
@@ -45,10 +44,10 @@ export const userSignupRequest = formData => dispatch => {
       });
     })
     .catch(err => {
-      alert(err.response.data.message);
+      console.log(err.response);
       dispatch({
         type: ADD_USER_ERROR,
-        error: err.response.data.message
+        payload: err.response.data.message
       });
     });
 };
