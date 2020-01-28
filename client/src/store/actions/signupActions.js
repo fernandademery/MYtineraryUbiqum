@@ -36,8 +36,6 @@ export const userSignupRequest = formData => dispatch => {
   axios
     .post("http://localhost:5000/users/", formData)
     .then(res => {
-      console.log(res);
-      console.log(res.data);
       dispatch({
         type: ADD_USER,
         payload: res.data

@@ -5,8 +5,12 @@ const userModel = require("../model/userModel");
 const bcrypt = require("bcryptjs");
 const validateRegisterInput = require("../validations/signup");
 
+// Signup route
 router.post("/", (req, res) => {
-  const { errors, isValid } = validateRegisterInput(req.body);
+  const {
+    errors,
+    isValid
+  } = validateRegisterInput(req.body);
   // Check Validation
   if (!isValid) {
     return res.status(400).json(errors);
@@ -64,13 +68,13 @@ router.get("/all", (req, res) => {
     .catch(err => console.log(err));
 });
 
+
 // Login POST route:
 const key = require("../keys");
 const jwt = require("jsonwebtoken");
 
 router.post("/login", (req, res) => {
-  userModel.findOne(
-    {
+  userModel.findOne({
       username: req.body.username
     },
     (err, user) => {
@@ -81,14 +85,16 @@ router.post("/login", (req, res) => {
           message: "Authentication failed. User not found."
         });
       } else {
-        bcrypt.compare(req.body.password, user.password, function(err, match) {
+        bcrypt.compare(req.body.password, user.password, function (err, match) {
           if (match) {
             const payload = {
-              id: user.id,
+              id: user._id,
               username: user.username,
-              avatarPicture: user.avatarPicture
+              avatarPicture: user.picture
             };
-            const options = { expiresIn: 2592000 };
+            const options = {
+              expiresIn: 2592000
+            };
             jwt.sign(payload, key.secretOrKey, options, (err, token) => {
               if (err) {
                 res.json({
@@ -113,5 +119,29 @@ router.post("/login", (req, res) => {
     }
   );
 });
+
+
+//Login GET route
+const passport = require("passport");
+require("../config/passport");
+
+router.get(
+  "/",
+  passport.authenticate("jwt", {
+    session: false
+  }),
+  (req, res) => {
+    userModel
+      .findOne({
+        _id: req.user.id
+      })
+      .then(user => {
+        res.json(user);
+      })
+      .catch(err => res.status(404).json({
+        error: "User does not exist!"
+      }));
+  }
+);
 
 module.exports = router;

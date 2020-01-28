@@ -87,17 +87,21 @@ class SignUp extends Component {
               <Profile className="profilepic" />
             </Col>{" "}
           </Row>
+
           <Row>
             <Col>
               <HamburgerMenu />{" "}
             </Col>{" "}
           </Row>
+
           <Row>
             <Col>
               <Header />
             </Col>{" "}
           </Row>
+
           <h1 className="heading-login"> Join our community! </h1>
+
           <Row>
             <Col xs={{ span: 8, offset: 2 }}>
               <form onSubmit={this.onSubmit}>
@@ -187,6 +191,7 @@ class SignUp extends Component {
             </Col>
           </Row>
         </div>
+
         <Row style={style.footerStyle}>
           <Col>
             <Footer> </Footer>{" "}
