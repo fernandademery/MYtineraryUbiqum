@@ -1,12 +1,31 @@
-import { SET_USERS, ADD_USER } from "../actions/signupActions";
+import { SET_USERS, ADD_USER, USER_LOADING } from "../actions/signupActions";
 
-const usersReducer = (state = [], action = {}) => {
+const isEmpty = require("is-empty");
+
+const initialState = {
+  authenticated: false,
+  user: {},
+  loading: false
+};
+
+const usersReducer = (state = initialState, action = {}) => {
   switch (action.type) {
+    case USER_LOADING:
+      return { ...state, loading: true };
     case SET_USERS:
-      return action.users;
+      console.log(state.authenticated);
+      return {
+        ...state,
+        authenticated: !isEmpty(action.payload),
+        user: action.payload
+      };
     case ADD_USER:
-      console.log("reducer");
-      return (state = [...state, { message: action.payload.error }]);
+      return (state = [
+        ...state,
+        {
+          message: action.payload.error
+        }
+      ]);
 
     default:
       return state;

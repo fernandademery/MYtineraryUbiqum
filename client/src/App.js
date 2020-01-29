@@ -9,6 +9,7 @@ import Cities from "./Components/Cities/Cities.js";
 import SignUp from "./Components/User/SignUp.js";
 import LogIn from "./Components/User/LogIn.js";
 import Itineraries from "./Components/Itinerary/Itineraries";
+import MyAccount from "./Components/User/MyAccount";
 
 function App() {
   const style = {
@@ -22,14 +23,15 @@ function App() {
       <Col style={style.bodyStyle} xs={12} sm={12}>
         <div className="App">
           <Switch>
-            <Route exact path="/" component={Landingv2} />
-            <Route path="/cities" component={Cities} />
-            <Route path="/signup" component={SignUp} />
-            <Route path="/login" component={LogIn} />
-            <Route path="/itinerary/:cityname" component={Itineraries} />
-          </Switch>
-        </div>
-      </Col>
+            <Route exact path="/" component={Landingv2} />{" "}
+            <Route path="/cities" component={Cities} />{" "}
+            <Route path="/signup" component={SignUp} />{" "}
+            <Route path="/login" component={LogIn} />{" "}
+            <Route path="/itinerary/:cityname" component={Itineraries} />{" "}
+            <Route path="/myaccount" component={MyAccount} />
+          </Switch>{" "}
+        </div>{" "}
+      </Col>{" "}
     </BrowserRouter>
   );
 }

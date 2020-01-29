@@ -1,14 +1,23 @@
 import React, { Component } from "react";
 import Form from "react-bootstrap/Form";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+// import { signupActions } from "../../store/actions/signupActions";
+import isEmpty from "is-empty";
+import PropTypes from "prop-types";
+import { loginUser } from "../../store/actions/signupActions";
 
-export default class LogIn extends Component {
+class LogIn extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
-      email: "",
-      password: ""
+      username: "",
+      password: "",
+      submitted: false
     };
     this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   }
 
   onChange(e) {
@@ -17,33 +26,102 @@ export default class LogIn extends Component {
     });
   }
 
+  onSubmit(e) {
+    e.preventDefault();
+
+    this.setState({ submitted: true });
+    const { username, password } = this.state;
+
+    if (isEmpty(username) || isEmpty(password)) {
+      return alert("Please submit username and password");
+    }
+
+    const user = {
+      username: username,
+      password: password
+    };
+
+    this.props.loginUser(user);
+  }
+
+  componentDidUpdate() {
+    if (this.props.user.authenticated) {
+      this.props.history.push("/");
+    }
+  }
+
+  componentDidMount() {
+    console.log(this.props);
+    if (this.props.user.authenticated) {
+      this.props.history.push("/");
+    }
+  }
+
   render() {
+    const { loggingIn } = this.props;
+    const { username, password, submitted } = this.state;
     return (
-      <Form>
+      <form onSubmit={this.onSubmit}>
         <Form.Group>
-          <Form.Label className="control-label"> Email: </Form.Label>{" "}
+          <Form.Label className="control-label"> Username: </Form.Label>{" "}
           <Form.Control
             type="text"
-            name="email"
+            name="username"
             className="form-control"
-            value={this.state.email}
+            value={username}
             required
             onChange={this.onChange}
           />{" "}
-        </Form.Group>
+          {submitted && !username && (
+            <div className="help-block">Username is required!</div>
+          )}
+        </Form.Group>{" "}
         <Form.Group>
           <Form.Label className="control-label"> Password: </Form.Label>{" "}
           <Form.Control
             type="password"
             name="password"
             className="form-control"
-            value={this.state.password}
+            value={password}
             required
             onChange={this.onChange}
           />{" "}
-          <button className="button-signup"> Log in </button>
-        </Form.Group>
-      </Form>
+          {submitted && !password && (
+            <div className="help-block">Password is required!</div>
+          )}
+          <button className="button-signup"> Log in </button>{" "}
+          {loggingIn && (
+            <img
+              alt="loader"
+              src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
+            />
+          )}
+          <Link to="/signup" className="btn btn-link">
+            Sign up
+          </Link>
+        </Form.Group>{" "}
+      </form>
     );
   }
 }
+
+LogIn.propTypes = {
+  user: PropTypes.object.isRequired,
+  loginUser: PropTypes.func.isRequired
+};
+
+const mapStateToProps = state => {
+  return {
+    authenticated: state.user.authenticated,
+    user: state.user,
+    loading: state.user.loading
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    loginUser: user => dispatch(loginUser(user))
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(LogIn);
