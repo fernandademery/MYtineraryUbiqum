@@ -25,6 +25,10 @@ app.use("/users", require("./routes/users"));
 
 app.use("/api/users", require("./routes/users"));
 
+app.use("/users/logout", require("./routes/users"));
+
+app.use("api/users/logout", require ("./routes/users"));
+
 // Importing DV keys:
 const db = require("./keys").mongoURI;
 

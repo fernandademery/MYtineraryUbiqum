@@ -31,13 +31,14 @@ export const userSignupRequest = formData => dispatch => {
   axios
     .post("http://localhost:5000/users/", formData)
     .then(res => {
+      console.log(res)
       dispatch({
         type: ADD_USER,
         payload: res.data
       });
     })
     .catch(err => {
-      console.log(err.response);
+      console.log(err);
       dispatch({
         type: ADD_USER_ERROR,
         payload: err.response.data.message
@@ -52,6 +53,8 @@ export const userLoading = () => {
   };
 };
 
+
+// Post call for login
 export const loginUser = formData => {
   console.log(formData);
   return dispatch => {
@@ -92,15 +95,28 @@ export const setUsers = decode => {
   };
 };
 
-export const logOut = () => dispatch => {
+// Logout function removing token from local storage.
+export const LOG_OUT = 'LOG_OUT'
+export const logOut = (user) => {
+  return dispatch => {
+    console.log('user in user action ', user);
+    let token = localStorage.getItem("token")
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    };
+    axios.get("http://localhost:5000/users/logout/", config).then(res => {
+        localStorage.removeItem("token");
+        console.log(localStorage)
+        authToken();
 
-  axios.get("api/users/logout").then(res => {
-    localStorage.removeItem("token");
+        dispatch({
+          type: LOG_OUT
+        });
 
-    //set authorization to false
-    authToken(false);
+      }
 
-    //send empty current user
-    dispatch(setUsers({}));
-  });
-};
+    )
+  }
+}

@@ -68,7 +68,6 @@ router.get("/all", (req, res) => {
     .catch(err => console.log(err));
 });
 
-
 // Login POST route:
 const key = require("../keys");
 const jwt = require("jsonwebtoken");
@@ -90,7 +89,8 @@ router.post("/login", (req, res) => {
             const payload = {
               id: user._id,
               username: user.username,
-              avatarPicture: user.picture
+              avatarPicture: user.picture,
+              firstname: user.firstname
             };
             const options = {
               expiresIn: 2592000
@@ -120,7 +120,6 @@ router.post("/login", (req, res) => {
   );
 });
 
-
 //Login GET route
 const passport = require("passport");
 require("../config/passport");
@@ -138,10 +137,30 @@ router.get(
       .then(user => {
         res.json(user);
       })
-      .catch(err => res.status(404).json({
-        error: "User does not exist!"
-      }));
+      .catch(err =>
+        res.status(404).json({
+          error: "User does not exist!"
+        })
+      );
   }
 );
+
+
+router.get(
+  "/logout",
+  passport.authenticate("jwt", {
+    session: false
+  }),
+  (req, res) => {
+
+    userModel.findOne({
+      _id: req.user.id
+    }).then(user => {
+      res.json("logged out");
+    });
+  }
+);
+
+
 
 module.exports = router;

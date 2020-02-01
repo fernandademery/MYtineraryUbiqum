@@ -18,6 +18,7 @@ function App() {
       padding: "0px"
     }
   };
+  //localStorage.removeItem("token")
   return (
     <BrowserRouter>
       <Col style={style.bodyStyle} xs={12} sm={12}>

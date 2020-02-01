@@ -1,4 +1,9 @@
-import { SET_USERS, ADD_USER, USER_LOADING } from "../actions/signupActions";
+import {
+  SET_USERS,
+  ADD_USER,
+  USER_LOADING,
+  LOG_OUT
+} from "../actions/signupActions";
 
 const isEmpty = require("is-empty");
 
@@ -20,12 +25,16 @@ const usersReducer = (state = initialState, action = {}) => {
         user: action.payload
       };
     case ADD_USER:
-      return (state = [
+      return {
         ...state,
-        {
-          message: action.payload.error
-        }
-      ]);
+
+        message: action.payload
+      };
+    case LOG_OUT:
+      return {
+        ...state,
+        authenticated: false
+      };
 
     default:
       return state;

@@ -4,6 +4,7 @@ import "../App.css";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import { logOut } from "../store/actions/signupActions";
 
 function HamburgerMenu(props) {
   console.log(props);
@@ -21,9 +22,6 @@ function HamburgerMenu(props) {
       <a className="menu-item" href="/about">
         About us
       </a>
-      {/* <Link className="menu-item" to="/login">
-        Log in
-      </Link> */}
       {authenticated ? (
         <React.Fragment>
           <Link className="menu-item" to="/myAccount">
@@ -44,12 +42,20 @@ function HamburgerMenu(props) {
 
 const mapStateToProps = function(state) {
   return {
-    user: state.user
+    user: state.user,
+    authenticated: state.user.authenticated
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    logOut: () => dispatch(logOut())
   };
 };
 
 HamburgerMenu.propTypes = {
-  user: PropTypes.object.isRequired
+  user: PropTypes.object.isRequired,
+  logOut: PropTypes.func.isRequired
 };
 
-export default connect(mapStateToProps)(HamburgerMenu);
+export default connect(mapStateToProps, mapDispatchToProps)(HamburgerMenu);
