@@ -9,9 +9,18 @@ import { logOut } from "../store/actions/signupActions";
 function HamburgerMenu(props) {
   console.log(props);
   const { authenticated } = props.user;
+  const style = {
+    menuStyle: {
+      color: "#b8b7ad",
+      textDecoration: "none",
+      backgroundColor: "#373a47",
+      border: "none"
+    }
+  };
+
   return (
     <Menu>
-      <Link className="menu-item" activeClassName="active" to="/">
+      <Link className="menu-item" style={style.menuStyle} to="/">
         Home
       </Link>
 
@@ -24,18 +33,25 @@ function HamburgerMenu(props) {
       </a>
       {authenticated ? (
         <React.Fragment>
-          <Link className="menu-item" to="/myAccount">
+          <Link className="menu-item" to="/myAccount" style={style.menuStyle}>
             My account
-          </Link>
+          </Link>{" "}
+          <br></br>
+          <button onClick={props.logOut} style={style.menuStyle}>
+            Logout
+          </button>
         </React.Fragment>
       ) : (
-        <Link className="menu-item" to="/logIn">
-          LogIn
-        </Link>
+        <React.Fragment>
+          <Link style={style.menuStyle} className="menu-item" to="/login">
+            LogIn
+          </Link>{" "}
+          <br></br>
+          <Link className="menu-item" style={style.menuStyle} to="/signup">
+            Sign up
+          </Link>
+        </React.Fragment>
       )}
-      <Link className="menu-item" to="/signup">
-        Sign up
-      </Link>
     </Menu>
   );
 }

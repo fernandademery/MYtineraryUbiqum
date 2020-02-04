@@ -18,6 +18,15 @@ export function addUserError(error) {
   };
 }
 
+export const LOGIN_USER_ERROR = "LOGIN_USER_ERROR";
+export function loginUserError(errorLogin) {
+  return {
+    type: LOGIN_USER_ERROR,
+    errorLogin
+
+  }
+}
+
 export function fetchUsers(email) {
   return dispatch => {
     fetch(`/users/${email}`)
@@ -64,6 +73,13 @@ export const loginUser = formData => {
           token
         } = res.data;
         console.log(token);
+        if (res.data.success === false) {
+          return ({
+            type: LOGIN_USER_ERROR,
+            payload: res.data.message
+          })
+
+        }
         localStorage.setItem("token", token);
 
 

@@ -38,8 +38,8 @@ export default function Landingv2() {
         <Col
           style={style.profileStyle}
           xs={{
-            span: 1,
-            offset: 9
+            span: 6,
+            offset: 7
           }}
           md={{
             span: 2,

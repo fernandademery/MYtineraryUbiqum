@@ -23,11 +23,17 @@ app.use("/itineraries", require("./routes/itineraries"));
 
 app.use("/users", require("./routes/users"));
 
+// Login and logout
 app.use("/api/users", require("./routes/users"));
 
 app.use("/users/logout", require("./routes/users"));
 
-app.use("api/users/logout", require ("./routes/users"));
+app.use("api/users/logout", require("./routes/users"));
+
+// Favourites
+app.use("/favourites", require("./routes/favourites"));
+// app.use("/api/itineraries/favourites", require("./routes/favourites"));
+// app.use("itineraries/favourites", require("./routes/favourites"));
 
 // Importing DV keys:
 const db = require("./keys").mongoURI;

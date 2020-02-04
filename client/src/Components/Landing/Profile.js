@@ -11,12 +11,6 @@ class Profile extends Component {
       loggedIn: false,
       profilePic: ""
     };
-    this.onClick = this.onClick.bind(this);
-  }
-
-  onClick(e) {
-    e.preventDefault();
-    this.props.logOut(this.props.user.user);
   }
 
   render() {
@@ -25,10 +19,15 @@ class Profile extends Component {
         borderRadius: "50%"
       },
       linksProfile: {
-        backgroundColor: "white",
+        backgroundColor: "#f2bbd5",
         cursor: "pointer",
         border: "none",
-        display: "block"
+        display: "inline",
+        textAlign: "center",
+        marginRight: "8px"
+      },
+      welcomeMessage: {
+        display: "flex-row"
       }
     };
     const { authenticated } = this.props.user;
@@ -36,14 +35,24 @@ class Profile extends Component {
     console.log("user in profile component ", this.props.user.user);
     return (
       <div>
-        <img
-          style={style.profilePic}
-          src={blankProfilePicture}
-          alt="Login icon"
-          width="50px"
-        />
-
-        {authenticated && <button onClick={this.onClick}>Log out</button>}
+        {" "}
+        {authenticated ? (
+          <React.Fragment>
+            <img
+              style={style.profilePic}
+              src={this.props.user.user.avatarPicture}
+              alt="user"
+              width="50px"
+            />
+          </React.Fragment>
+        ) : (
+          <img
+            style={style.profilePic}
+            src={blankProfilePicture}
+            alt="Login icon"
+            width="50px"
+          />
+        )}
       </div>
     );
   }

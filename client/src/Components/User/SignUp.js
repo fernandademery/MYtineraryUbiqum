@@ -40,6 +40,7 @@ class SignUp extends Component {
     e.preventDefault();
 
     this.props.userSignupRequest(this.state);
+    this.props.history.push("/login");
   }
 
   render() {

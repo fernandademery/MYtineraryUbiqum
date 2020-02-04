@@ -1,24 +1,25 @@
-import {
-    ADD_USER_ERROR
-} from "../actions/signupActions"
+import { ADD_USER_ERROR, LOGIN_USER_ERROR } from "../actions/signupActions";
 
 const initialState = {
-    error: ""
+  error: "",
+  errorLogin: ""
 };
 
-export default function (state = initialState, action = {}) {
-    console.log(action)
-    switch (action.type) {
+export default function(state = initialState, action = {}) {
+  console.log(action);
+  switch (action.type) {
+    case ADD_USER_ERROR:
+      return {
+        ...state,
+        error: action.payload
+      };
+    case LOGIN_USER_ERROR:
+      return {
+        ...state,
+        errorLogin: action.payload
+      };
 
-        case ADD_USER_ERROR:
-            return {
-
-                error: action.payload
-
-            }
-
-
-            default:
-                return state;
-    }
+    default:
+      return state;
+  }
 }

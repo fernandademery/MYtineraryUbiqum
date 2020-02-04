@@ -4,6 +4,7 @@ import "../../App.css";
 import Activities from "./Activities";
 import { connect } from "react-redux";
 import Button from "react-bootstrap/Button";
+import LikeButton from "./LikeButton";
 
 export class Itinerary extends Component /*({ itinerary })*/ {
   constructor() {
@@ -56,6 +57,8 @@ export class Itinerary extends Component /*({ itinerary })*/ {
     const { activities, expand } = this.state;
     console.log(activities);
 
+    const { authenticated } = this.props;
+
     return (
       <div style={style.itineraryStyle}>
         <Card>
@@ -72,6 +75,7 @@ export class Itinerary extends Component /*({ itinerary })*/ {
                 {itinerary.rating} likes {itinerary.duration} hours{" "}
                 {price(itinerary)}
               </Card.Subtitle>
+              {authenticated && <LikeButton props={itinerary} />}
               <Card.Text>
                 {itinerary.tag.map((hash, i) => (
                   <span key={i}>{hash}</span>
@@ -114,9 +118,10 @@ export class Itinerary extends Component /*({ itinerary })*/ {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  console.log(state);
+  console.log("Itinerary component state", state);
   return {
-    itineraries: state.itineraries
+    itineraries: state.itineraries,
+    authenticated: state.user.authenticated
   };
 };
 

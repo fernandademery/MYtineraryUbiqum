@@ -90,7 +90,8 @@ router.post("/login", (req, res) => {
               id: user._id,
               username: user.username,
               avatarPicture: user.picture,
-              firstname: user.firstname
+              firstname: user.firstname,
+              favourites: user.favourites
             };
             const options = {
               expiresIn: 2592000
@@ -160,6 +161,8 @@ router.get(
     });
   }
 );
+
+
 
 
 
