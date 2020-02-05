@@ -9,28 +9,34 @@ import {
 import "../../App.css";
 
 class LikeButton extends Component {
-  constructor(props) {
-    super(props);
+  // constructor(props) {
+  //   super(props);
 
-    this.state = {
-      isLiked: false
-    };
-  }
-  buttonClick(data) {
-    if (this.props.favourites.filter(fav => fav._id === data)[0]) {
-      this.props.removeFavourite(data, this.props.user._id);
-    } else {
-      this.props.addFavourite(data, this.props.user._id);
-    }
-  }
+  //   this.state = {
+  //     isLiked: false
+  //   };
+  // }
+  // buttonClick(data) {
+  //   if (this.props.favourites.filter(fav => fav._id === data)[0]) {
+  //     this.props.removeFavourite(data, this.props.user._id);
+  //   } else {
+  //     this.props.addFavourite(data, this.props.user._id);
+  //   }
+  // }
+
+  // addFavouriteItinerary () => {
+  //   const {user} = this.props;
+  //   if user.
+  // }
 
   render() {
     console.log(this.props);
-    let itinerary = this.props.props;
+    let itinerary = this.props;
     let { favourites } = this.props;
 
     const LikeDisp = (
       <img
+        itinerary={itinerary}
         className="LikeButton like"
         onClick={() => this.buttonClick(itinerary._id)}
         src={heartFull}
@@ -41,6 +47,7 @@ class LikeButton extends Component {
     );
     const NoLikeDisp = (
       <img
+        itinerary={itinerary}
         className="LikeButton dislike"
         onClick={() => this.buttonClick(itinerary._id)}
         src={heartEmpty}

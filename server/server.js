@@ -30,11 +30,6 @@ app.use("/users/logout", require("./routes/users"));
 
 app.use("api/users/logout", require("./routes/users"));
 
-// Favourites
-app.use("/favourites", require("./routes/favourites"));
-// app.use("/api/itineraries/favourites", require("./routes/favourites"));
-// app.use("itineraries/favourites", require("./routes/favourites"));
-
 // Importing DV keys:
 const db = require("./keys").mongoURI;
 

@@ -10,19 +10,22 @@ const isEmpty = require("is-empty");
 const initialState = {
   authenticated: false,
   user: {},
-  loading: false
+  loading: false,
+  favourites: []
 };
 
 const usersReducer = (state = initialState, action = {}) => {
   switch (action.type) {
     case USER_LOADING:
-      return { ...state, loading: true };
+      return {
+        ...state, loading: true
+      };
     case SET_USERS:
       console.log(state.authenticated);
       return {
         ...state,
         authenticated: !isEmpty(action.payload),
-        user: action.payload
+          user: action.payload
       };
     case ADD_USER:
       return {
@@ -35,6 +38,7 @@ const usersReducer = (state = initialState, action = {}) => {
         ...state,
         authenticated: false
       };
+
 
     default:
       return state;

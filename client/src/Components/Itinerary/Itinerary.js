@@ -4,7 +4,14 @@ import "../../App.css";
 import Activities from "./Activities";
 import { connect } from "react-redux";
 import Button from "react-bootstrap/Button";
-import LikeButton from "./LikeButton";
+import heartEmpty from "../../images/heart_empty.png";
+import heartFull from "../../images/heart-full.png";
+
+import PropTypes from "prop-types";
+import {
+  addFavourite,
+  removeFavourite
+} from "../../store/actions/favouriteActions";
 
 export class Itinerary extends Component /*({ itinerary })*/ {
   constructor() {
@@ -17,15 +24,44 @@ export class Itinerary extends Component /*({ itinerary })*/ {
   componentDidMount() {
     // "itinerary" was passed in as prop from the Itineraries component - where we're mapping through all itineraries.
     const { itinerary } = this.props;
+
     console.log(itinerary.activities);
     this.setState({
       activities: itinerary.activities
     });
   }
 
+  addFavouriteItinerary = () => {
+    const { user } = this.props;
+    if (user.authenticated === true) {
+      const { _id, title, city } = this.props.itinerary;
+      const likedItinerary = {
+        itineraryId: _id,
+        name: title,
+        city: city
+      };
+      this.props.addFavourite(likedItinerary);
+    } else {
+      alert("You have to logIn to like or unlike itineraries!");
+    }
+  };
+
+  removeFavouriteItinerary = () => {
+    const { user } = this.props;
+    if (user.authenticated === true) {
+      const { _id } = this.props.itinerary;
+      const itinerary = {
+        itineraryId: _id
+      };
+      console.log(itinerary);
+      this.props.removeFavourite(itinerary);
+    }
+  };
+
   render() {
     console.log(this.state);
     const { itinerary } = this.props;
+    console.log(this.props);
     const style = {
       itineraryStyle: {
         marginBottom: "10px"
@@ -57,7 +93,37 @@ export class Itinerary extends Component /*({ itinerary })*/ {
     const { activities, expand } = this.state;
     console.log(activities);
 
-    const { authenticated } = this.props;
+    // const { authenticated } = this.props;
+    console.log(this.props);
+    const { favourites } = this.props.favourites;
+    const favItin = favourites.filter(
+      favourite => favourite.itineraryId === itinerary._id
+    );
+
+    let heart;
+    if (favItin.length > 0) {
+      heart = (
+        <img
+          className="LikeButton like"
+          onClick={this.removeFavouriteItinerary}
+          src={heartFull}
+          style={{ height: "20px" }}
+          alt="LikeFull"
+          key={itinerary._id}
+        />
+      );
+    } else {
+      heart = (
+        <img
+          className="LikeButton dislike"
+          onClick={this.addFavouriteItinerary}
+          src={heartEmpty}
+          style={{ height: "20px" }}
+          alt="LikeHollow"
+          key={itinerary._id}
+        />
+      );
+    }
 
     return (
       <div style={style.itineraryStyle}>
@@ -72,10 +138,10 @@ export class Itinerary extends Component /*({ itinerary })*/ {
                 {itinerary.title}
               </Card.Title>
               <Card.Subtitle className="mb-2 text-muted" key={itinerary._id}>
-                {itinerary.rating} likes {itinerary.duration} hours{" "}
+                {itinerary.rating} likes {heart} {itinerary.duration} hours{" "}
                 {price(itinerary)}
               </Card.Subtitle>
-              {authenticated && <LikeButton props={itinerary} />}
+              {/* {authenticated && <LikeButton props={itinerary} />} */}
               <Card.Text>
                 {itinerary.tag.map((hash, i) => (
                   <span key={i}>{hash}</span>
@@ -117,12 +183,26 @@ export class Itinerary extends Component /*({ itinerary })*/ {
   }
 }
 
+Itinerary.propTypes = {
+  user: PropTypes.object.isRequired,
+  favourites: PropTypes.array.isRequired
+};
+
 const mapStateToProps = (state, ownProps) => {
   console.log("Itinerary component state", state);
   return {
     itineraries: state.itineraries,
-    authenticated: state.user.authenticated
+    authenticated: state.user.authenticated,
+    user: state.user,
+    favourites: state.favourites
   };
 };
 
-export default connect(mapStateToProps)(Itinerary);
+const mapDispatchToProps = dispatch => {
+  return {
+    addFavourite: favourite => dispatch(addFavourite(favourite)),
+    removeFavourite: itinerary => dispatch(removeFavourite(itinerary))
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Itinerary);

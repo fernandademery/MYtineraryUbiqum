@@ -9,13 +9,17 @@ import HamburgerMenu from "../HamburgerMenu";
 import "../../App.css";
 import Footer from "../Footer";
 import { Link } from "react-router-dom";
-// import { Activities } from "./Activities";
+import PropTypes from "prop-types";
+import { getFavItin } from "../../store/actions/favouriteActions";
 
 export class Itineraries extends Component {
   componentDidMount() {
     console.log(this.props);
     const { cityname } = this.props.match.params;
     this.props.fetchItineraries(cityname);
+    if (this.props.authenticated === true) {
+      this.props.getFavItin();
+    }
   }
   render() {
     console.log(this.props);
@@ -23,6 +27,7 @@ export class Itineraries extends Component {
     console.log(itineraries);
     console.log(this.props.match.params.cityname);
     const { cityname } = this.props.match.params;
+    const { favourites } = this.props;
 
     const style = {
       bodyStyle: {
@@ -86,12 +91,12 @@ export class Itineraries extends Component {
             <Col>
               <HamburgerMenu />{" "}
             </Col>{" "}
-          </Row>
+          </Row>{" "}
           <Row>
             <Col>
               <Header />
             </Col>{" "}
-          </Row>
+          </Row>{" "}
           <Row>
             <Col
               xs={{
@@ -103,9 +108,9 @@ export class Itineraries extends Component {
                 offset: 2
               }}
             >
-              <h1 style={style.cityStyle}>{cityname}</h1>
-            </Col>
-          </Row>
+              <h1 style={style.cityStyle}> {cityname} </h1>{" "}
+            </Col>{" "}
+          </Row>{" "}
           <Row>
             <Col
               xs={{
@@ -118,30 +123,35 @@ export class Itineraries extends Component {
               }}
             >
               <div>
+                {" "}
                 {/* In this loop, I'm mapping through itineraries and returning the Itinerary component for each itinerary
-    this "itinerary={itinerary}" is passing ONE itinerary through props to the Itinerary component*/}
+            this "itinerary={itinerary}" is passing ONE itinerary through props to the Itinerary component*/}{" "}
                 {itineraries &&
                   itineraries.map(itinerary => {
                     return (
-                      <Itinerary itinerary={itinerary} key={itinerary._id} />
+                      <Itinerary
+                        itinerary={itinerary}
+                        key={itinerary._id}
+                        favourites={favourites}
+                      />
                     );
-                  })}
-              </div>
-            </Col>
-          </Row>
+                  })}{" "}
+              </div>{" "}
+            </Col>{" "}
+          </Row>{" "}
           <Row>
             <Col>
               <Link to="/cities">
-                <h3 style={style.linkStyle}>Choose another city</h3>
-              </Link>
-            </Col>
-          </Row>
-        </div>
+                <h3 style={style.linkStyle}> Choose another city </h3>{" "}
+              </Link>{" "}
+            </Col>{" "}
+          </Row>{" "}
+        </div>{" "}
         <Row style={style.footerStyle}>
           <Col>
             <Footer> </Footer>{" "}
           </Col>{" "}
-        </Row>
+        </Row>{" "}
       </Container>
     );
   }
@@ -150,12 +160,20 @@ export class Itineraries extends Component {
 const mapStateToProps = (state, ownProps) => {
   console.log(state);
   return {
-    itineraries: state.itineraries
+    itineraries: state.itineraries,
+    error: state.error,
+    authenticated: state.user.authenticated,
+    favourites: state.user.user.favourites
   };
 };
 
 const mapDispatchToProps = dispatch => ({
-  fetchItineraries: cityname => dispatch(fetchItineraries(cityname))
+  fetchItineraries: cityname => dispatch(fetchItineraries(cityname)),
+  getFavItin: () => dispatch(getFavItin())
 });
+
+Itineraries.propTypes = {
+  itineraries: PropTypes.object.isRequired
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Itineraries);
