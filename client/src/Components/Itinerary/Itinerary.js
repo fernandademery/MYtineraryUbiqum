@@ -95,7 +95,7 @@ export class Itinerary extends Component /*({ itinerary })*/ {
 
     // const { authenticated } = this.props;
     console.log(this.props);
-    const { favourites } = this.props.favourites;
+    const { favourites } = this.props.user;
     const favItin = favourites.filter(
       favourite => favourite.itineraryId === itinerary._id
     );
@@ -194,7 +194,7 @@ const mapStateToProps = (state, ownProps) => {
     itineraries: state.itineraries,
     authenticated: state.user.authenticated,
     user: state.user,
-    favourites: state.favourites
+    favourites: state.user.user.favourites
   };
 };
 

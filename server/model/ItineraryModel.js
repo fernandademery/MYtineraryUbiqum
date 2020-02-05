@@ -12,9 +12,6 @@ const itinerarySchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    _id: {
-        type: String
-    },
     title: {
         type: String,
         required: true,

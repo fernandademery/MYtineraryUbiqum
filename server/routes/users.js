@@ -7,7 +7,10 @@ const validateRegisterInput = require("../validations/signup");
 
 // Signup route
 router.post("/", (req, res) => {
-  const { errors, isValid } = validateRegisterInput(req.body);
+  const {
+    errors,
+    isValid
+  } = validateRegisterInput(req.body);
   // Check Validation
   if (!isValid) {
     return res.status(400).json(errors);
@@ -71,8 +74,7 @@ const key = require("../keys");
 const jwt = require("jsonwebtoken");
 
 router.post("/login", (req, res) => {
-  userModel.findOne(
-    {
+  userModel.findOne({
       username: req.body.username
     },
     (err, user) => {
@@ -83,7 +85,7 @@ router.post("/login", (req, res) => {
           message: "Authentication failed. User not found."
         });
       } else {
-        bcrypt.compare(req.body.password, user.password, function(err, match) {
+        bcrypt.compare(req.body.password, user.password, function (err, match) {
           if (match) {
             const payload = {
               id: user._id,
@@ -162,25 +164,56 @@ router.get(
 );
 
 // Add favourites:
-const itineraryModel = require("../model/ItineraryModel");
+// const itineraryModel = require("../model/ItineraryModel");
+// router.post("/addfavourite", (req, res) => {
+//   let user = req.body.user;
+//   console.log(user);
 
+//   userModel.findOne({
+//       _id: user
+//     })
+//     .then(userModel => {
+//       let itineraries = userModel.favourites;
+//       return itineraries;
+//     })
+//     .then(itineraries => {
+//       itineraryModel.find({
+//         _id: {
+//           $in: itineraries
+//         }
+//       }).then(favourites => {
+//         res.status(200).send(favourites);
+//         return favourites;
+//       });
+//     })
+//     .catch(err => {
+//       res.status(500).json({
+//         error: err
+//       });
+//     });
+// });
+
+const itineraryModel = require("../model/ItineraryModel");
 router.post(
   "/addfavourite",
   passport.authenticate("jwt", {
     session: false
   }),
   (req, res) => {
+    // console.log(req.user.id);
     userModel
       .findOne({
         _id: req.user.id
       })
       .then(user => {
+        // console.log(user);
         let favouriteItineraries = user.favourites.filter(
           favouriteItinerary =>
-            favouriteItinerary.itineraryId === req.body.itineraryId
+          favouriteItinerary.itineraryId === req.body.itineraryId
         );
 
         if (favouriteItineraries.length !== 0) {
+          // console.log(req.body.itineraryId);
           res.status(400).json({
             error: "Itinerary already liked by the user"
           });
@@ -190,6 +223,7 @@ router.post(
               _id: req.body.itineraryId
             })
             .then(itinerary => {
+              //console.log(itinerary);
               user.favourites.push({
                 itineraryId: req.body.itineraryId,
                 name: itinerary.title,
@@ -205,6 +239,7 @@ router.post(
                 });
             })
             .catch(err => {
+              console.log(err);
               res.status(404).json({
                 error: "Can't find itinerary with this id"
               });
@@ -212,6 +247,7 @@ router.post(
         }
       })
       .catch(err => {
+        console.log(err)
         res.status(404).json({
           error: "User not found"
         });
@@ -233,7 +269,7 @@ router.post(
       .then(user => {
         let favouriteItineraries = user.favourites.filter(
           favouriteItinerary =>
-            favouriteItinerary.itineraryId === req.body.itineraryId
+          favouriteItinerary.itineraryId === req.body.itineraryId
         );
 
         if (favouriteItineraries.length === 0) {
