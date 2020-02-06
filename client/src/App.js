@@ -10,6 +10,7 @@ import SignUp from "./Components/User/SignUp.js";
 import LogIn from "./Components/User/LogIn.js";
 import Itineraries from "./Components/Itinerary/Itineraries";
 import MyAccount from "./Components/User/MyAccount";
+import SuccessPage from "./Components/User/SuccessPage";
 
 function App() {
   const style = {
@@ -29,7 +30,8 @@ function App() {
             <Route path="/signup" component={SignUp} />{" "}
             <Route path="/login" component={LogIn} />{" "}
             <Route path="/itinerary/:cityname" component={Itineraries} />{" "}
-            <Route path="/myaccount" component={MyAccount} />
+            <Route path="/myaccount" component={MyAccount} />{" "}
+            <Route path="/success" component={SuccessPage} />{" "}
           </Switch>{" "}
         </div>{" "}
       </Col>{" "}

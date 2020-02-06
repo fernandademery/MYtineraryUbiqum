@@ -15,8 +15,8 @@ const rootReducer = combineReducers({
     user: usersReducer,
     authenticated: usersReducer,
     loading: usersReducer,
-    errorLogin: errorReducer,
-    favourites: favouriteReducer
+    favourites: favouriteReducer,
+
 
 });
 export default rootReducer;

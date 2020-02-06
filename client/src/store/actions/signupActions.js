@@ -12,20 +12,15 @@ export function addUser(user) {
 
 export const ADD_USER_ERROR = "ADD_USER_ERROR";
 export function addUserError(error) {
-  return {
-    type: ADD_USER_ERROR,
-    error
+  return (dispatch) => {
+    dispatch({
+      type: ADD_USER_ERROR,
+      error
+    })
   };
 }
 
 export const LOGIN_USER_ERROR = "LOGIN_USER_ERROR";
-export function loginUserError(errorLogin) {
-  return {
-    type: LOGIN_USER_ERROR,
-    errorLogin
-
-  }
-}
 
 export function fetchUsers(email) {
   return dispatch => {
@@ -45,6 +40,7 @@ export const userSignupRequest = formData => dispatch => {
         type: ADD_USER,
         payload: res.data
       });
+      window.location.href = "/success";
     })
     .catch(err => {
       console.log(err);
@@ -72,9 +68,9 @@ export const loginUser = formData => {
         const {
           token
         } = res.data;
-        console.log(token);
         if (res.data.success === false) {
-          return ({
+
+          dispatch({
             type: LOGIN_USER_ERROR,
             payload: res.data.message
           })
@@ -124,12 +120,12 @@ export const logOut = (user) => {
     };
     axios.get("http://localhost:5000/users/logout/", config).then(res => {
         localStorage.removeItem("token");
-        console.log(localStorage)
         authToken();
 
         dispatch({
           type: LOG_OUT
         });
+        window.location.href = "/";
 
       }
 

@@ -35,6 +35,9 @@ export class Itineraries extends Component {
         position: "relative",
         minHeight: "100vh"
       },
+      profileStyle: {
+        marginTop: "15px"
+      },
       cityStyle: {
         backgroundColor: "#8C2A3C",
         color: "white",
@@ -69,7 +72,7 @@ export class Itineraries extends Component {
         style={style.bodyStyle}
       >
         <div style={style.contentwrapStyle} className="content-wrap">
-          <Row>
+          <Row style={style.profileStyle}>
             <Col
               xs={{
                 span: 1,

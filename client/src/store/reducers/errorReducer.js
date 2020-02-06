@@ -1,11 +1,13 @@
-import { ADD_USER_ERROR, LOGIN_USER_ERROR } from "../actions/signupActions";
+import {
+  ADD_USER_ERROR,
+  LOGIN_USER_ERROR
+} from "../actions/signupActions";
 
 const initialState = {
-  error: "",
-  errorLogin: ""
+  error: ""
 };
 
-export default function(state = initialState, action = {}) {
+export default function (state = initialState, action = {}) {
   console.log(action);
   switch (action.type) {
     case ADD_USER_ERROR:
@@ -16,7 +18,7 @@ export default function(state = initialState, action = {}) {
     case LOGIN_USER_ERROR:
       return {
         ...state,
-        errorLogin: action.payload
+        error: action.payload
       };
 
     default:

@@ -11,7 +11,7 @@ const initialState = {
   authenticated: false,
   user: {},
   loading: false,
-  favourites: []
+
 };
 
 const usersReducer = (state = initialState, action = {}) => {
@@ -21,7 +21,7 @@ const usersReducer = (state = initialState, action = {}) => {
         ...state, loading: true
       };
     case SET_USERS:
-      console.log(state.authenticated);
+
       return {
         ...state,
         authenticated: !isEmpty(action.payload),
@@ -38,7 +38,6 @@ const usersReducer = (state = initialState, action = {}) => {
         ...state,
         authenticated: false
       };
-
 
     default:
       return state;

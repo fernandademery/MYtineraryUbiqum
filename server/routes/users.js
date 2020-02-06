@@ -82,7 +82,7 @@ router.post("/login", (req, res) => {
       if (!user) {
         res.send({
           sucess: false,
-          message: "Authentication failed. User not found."
+          message: "User not found."
         });
       } else {
         bcrypt.compare(req.body.password, user.password, function (err, match) {
@@ -113,7 +113,7 @@ router.post("/login", (req, res) => {
           } else {
             res.json({
               success: false,
-              message: "Authentication failed. Wrong password."
+              message: "Wrong password."
             });
           }
         });
@@ -147,6 +147,8 @@ router.get(
   }
 );
 
+
+//Logout
 router.get(
   "/logout",
   passport.authenticate("jwt", {
@@ -164,34 +166,6 @@ router.get(
 );
 
 // Add favourites:
-// const itineraryModel = require("../model/ItineraryModel");
-// router.post("/addfavourite", (req, res) => {
-//   let user = req.body.user;
-//   console.log(user);
-
-//   userModel.findOne({
-//       _id: user
-//     })
-//     .then(userModel => {
-//       let itineraries = userModel.favourites;
-//       return itineraries;
-//     })
-//     .then(itineraries => {
-//       itineraryModel.find({
-//         _id: {
-//           $in: itineraries
-//         }
-//       }).then(favourites => {
-//         res.status(200).send(favourites);
-//         return favourites;
-//       });
-//     })
-//     .catch(err => {
-//       res.status(500).json({
-//         error: err
-//       });
-//     });
-// });
 
 const itineraryModel = require("../model/ItineraryModel");
 router.post(
@@ -200,20 +174,17 @@ router.post(
     session: false
   }),
   (req, res) => {
-    // console.log(req.user.id);
     userModel
       .findOne({
         _id: req.user.id
       })
       .then(user => {
-        // console.log(user);
         let favouriteItineraries = user.favourites.filter(
           favouriteItinerary =>
           favouriteItinerary.itineraryId === req.body.itineraryId
         );
 
         if (favouriteItineraries.length !== 0) {
-          // console.log(req.body.itineraryId);
           res.status(400).json({
             error: "Itinerary already liked by the user"
           });
@@ -223,7 +194,6 @@ router.post(
               _id: req.body.itineraryId
             })
             .then(itinerary => {
-              //console.log(itinerary);
               user.favourites.push({
                 itineraryId: req.body.itineraryId,
                 name: itinerary.title,
@@ -311,6 +281,7 @@ router.post(
   }
 );
 
+// Get favourites
 router.get(
   "/favourites",
   passport.authenticate("jwt", {
@@ -322,7 +293,8 @@ router.get(
         _id: req.user.id
       })
       .then(user => {
-        res.json(user.favorites);
+        console.log(user.favourites);
+        res.json(user.favourites);
       })
       .catch(err => {
         res.status(404).json({

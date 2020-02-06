@@ -1,10 +1,23 @@
-import React, { Component } from "react";
+import React, {
+  Component
+} from "react";
 import CityList from "./CityList.js";
-import { connect } from "react-redux";
-import { fetchCities } from "../../store/actions/cityActions";
+import {
+  connect
+} from "react-redux";
+import {
+  fetchCities
+} from "../../store/actions/cityActions";
 import Header from "../Header";
-import { Container, Col, Row } from "react-bootstrap";
-import { Form, Input } from "reactstrap";
+import {
+  Container,
+  Col,
+  Row
+} from "react-bootstrap";
+import {
+  Form,
+  Input
+} from "reactstrap";
 import Profile from "../Landing/Profile";
 import HamburgerMenu from "../HamburgerMenu";
 import "../../App.css";
@@ -47,6 +60,9 @@ class Cities extends Component {
         top: "55px",
         position: "fixed"
       },
+      profileStyle: {
+        marginTop: "15px"
+      },
       inputStyle: {
         height: "40px",
         textSize: "30px"
@@ -65,88 +81,131 @@ class Cities extends Component {
       }
     };
 
-    return (
-      <Container
-        className="themed-container"
-        fluid={true}
-        style={style.bodyStyle}
-      >
-        <Row>
-          <Col
-            xs={{
-              span: 1,
-              offset: 9
-            }}
-            md={{
-              span: 1,
-              offset: 10
-            }}
-            lg={{
-              span: 1,
-              offset: 11
-            }}
-          >
-            <Profile className="profilepic" />
-          </Col>{" "}
-        </Row>{" "}
-        <Row>
-          <Col>
-            <HamburgerMenu style={style.menuStyle} />{" "}
-          </Col>{" "}
-        </Row>{" "}
-        <Row>
-          <Col>
-            <Header />
-          </Col>{" "}
-        </Row>{" "}
-        <div>
-          {" "}
-          <Row>
-            <Col
-              xs={{
-                span: 10,
-                offset: 1
-              }}
-              md={{
-                span: 6,
-                offset: 3
-              }}
-            >
-              <Form>
-                <Input
-                  type="search"
-                  placeholder="Filter by city..."
-                  onKeyUp={this.handleChange}
-                  onSubmit="return false"
-                  bsSize="lg"
-                  style={style.inputStyle}
-                />
-              </Form>{" "}
-            </Col>{" "}
-          </Row>{" "}
-          <Row>
-            <Col
-              xs={{
-                span: 10,
-                offset: 1
-              }}
-              md={{
-                span: 8,
-                offset: 2
-              }}
-            >
-              <div style={style.citiesStyle}>
-                <CityList cities={filteredCities} />{" "}
-              </div>{" "}
-            </Col>{" "}
-          </Row>{" "}
-          <Row style={style.footerStyle}>
-            <Col>
-              <Footer> </Footer>{" "}
-            </Col>{" "}
-          </Row>{" "}
-        </div>{" "}
-      </Container>
+    return ( <
+      Container className = "themed-container"
+      fluid = {
+        true
+      }
+      style = {
+        style.bodyStyle
+      } >
+      <
+      Row style = {
+        style.profileStyle
+      } >
+      <
+      Col xs = {
+        {
+          span: 1,
+          offset: 9
+        }
+      }
+      md = {
+        {
+          span: 1,
+          offset: 10
+        }
+      }
+      lg = {
+        {
+          span: 1,
+          offset: 11
+        }
+      } >
+      <
+      Profile className = "profilepic" / >
+      <
+      /Col>{" "} <
+      /Row>{" "} <
+      Row >
+      <
+      Col >
+      <
+      HamburgerMenu style = {
+        style.menuStyle
+      }
+      />{" "} <
+      /Col>{" "} <
+      /Row>{" "} <
+      Row >
+      <
+      Col >
+      <
+      Header / >
+      <
+      /Col>{" "} <
+      /Row>{" "} <
+      div > {
+        " "
+      } <
+      Row >
+      <
+      Col xs = {
+        {
+          span: 10,
+          offset: 1
+        }
+      }
+      md = {
+        {
+          span: 6,
+          offset: 3
+        }
+      } >
+      <
+      Form >
+      <
+      Input type = "search"
+      placeholder = "Filter by city..."
+      onKeyUp = {
+        this.handleChange
+      }
+      onSubmit = "return false"
+      bsSize = "lg"
+      style = {
+        style.inputStyle
+      }
+      /> <
+      /Form>{" "} <
+      /Col>{" "} <
+      /Row>{" "} <
+      Row >
+      <
+      Col xs = {
+        {
+          span: 10,
+          offset: 1
+        }
+      }
+      md = {
+        {
+          span: 8,
+          offset: 2
+        }
+      } >
+      <
+      div style = {
+        style.citiesStyle
+      } >
+      <
+      CityList cities = {
+        filteredCities
+      }
+      />{" "} <
+      /div>{" "} <
+      /Col>{" "} <
+      /Row>{" "} <
+      Row style = {
+        style.footerStyle
+      } >
+      <
+      Col >
+      <
+      Footer > < /Footer>{" "} <
+      /Col>{" "} <
+      /Row>{" "} <
+      /div>{" "} <
+      /Container>
     );
   }
 }

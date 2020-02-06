@@ -17,7 +17,6 @@ import { Col } from "react-bootstrap";
 export default class extends React.Component {
   render() {
     const settings = {
-      //className: "center",
       centerMode: true,
       infinite: true,
       centerPadding: "0px",
@@ -35,7 +34,6 @@ export default class extends React.Component {
           breakpoint: 1024,
           settings: {
             slidesToShow: 1,
-            // slidesToScroll: 1,
             infinite: true,
             dots: true,
             autoplay: false,
@@ -47,7 +45,6 @@ export default class extends React.Component {
           breakpoint: 600,
           settings: {
             slidesToShow: 1,
-            //slidesToScroll: 1,
             initialSlide: 0,
             infinite: true,
             dots: true,
@@ -65,21 +62,13 @@ export default class extends React.Component {
             autoplay: false,
             pauseOnHover: true,
             adaptiveHeight: true
-            // slidesToScroll: 0
           }
         }
       ]
     };
 
-    const style = {
-      headerStyle: {
-        fontSize: "30px"
-      }
-    };
-
     return (
       <div>
-        <h2 style={style.headerStyle}> Popular MYtineraries </h2>{" "}
         <Col
           md={{
             span: 10,

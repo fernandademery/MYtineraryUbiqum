@@ -5,7 +5,8 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import {
   userSignupRequest,
-  fetchUsers
+  fetchUsers,
+  loginUser
 } from "../../store/actions/signupActions";
 import Header from "../Header";
 import Profile from "../Landing/Profile";
@@ -40,13 +41,15 @@ class SignUp extends Component {
     e.preventDefault();
 
     this.props.userSignupRequest(this.state);
-    this.props.history.push("/login");
   }
 
   render() {
     const style = {
       bodyStyle: {
         padding: "0px"
+      },
+      profileStyle: {
+        marginTop: "15px"
       },
       footerStyle: {
         position: "fixed",
@@ -70,7 +73,7 @@ class SignUp extends Component {
         style={style.bodyStyle}
       >
         <div className="contentwrap" style={style.contentwrapStyle}>
-          <Row>
+          <Row style={style.profileStyle}>
             <Col
               xs={{
                 span: 1,
@@ -87,24 +90,25 @@ class SignUp extends Component {
             >
               <Profile className="profilepic" />
             </Col>{" "}
-          </Row>
-
+          </Row>{" "}
           <Row>
             <Col>
               <HamburgerMenu />{" "}
             </Col>{" "}
-          </Row>
-
+          </Row>{" "}
           <Row>
             <Col>
               <Header />
             </Col>{" "}
-          </Row>
-
-          <h1 className="heading-login"> Join our community! </h1>
-
+          </Row>{" "}
+          <h1 className="heading-login"> Join our community! </h1>{" "}
           <Row>
-            <Col xs={{ span: 8, offset: 2 }}>
+            <Col
+              xs={{
+                span: 8,
+                offset: 2
+              }}
+            >
               <form onSubmit={this.onSubmit}>
                 <Form.Group>
                   <Form.Label className="control-label"> Username: </Form.Label>{" "}
@@ -115,7 +119,7 @@ class SignUp extends Component {
                     value={this.state.username}
                     onChange={this.onChange}
                   />{" "}
-                </Form.Group>
+                </Form.Group>{" "}
                 <Form.Group>
                   <Form.Label className="control-label">
                     {" "}
@@ -128,7 +132,7 @@ class SignUp extends Component {
                     value={this.state.firstname}
                     onChange={this.onChange}
                   />{" "}
-                </Form.Group>
+                </Form.Group>{" "}
                 <Form.Group>
                   <Form.Label className="control-label">
                     {" "}
@@ -141,7 +145,7 @@ class SignUp extends Component {
                     value={this.state.lastname}
                     onChange={this.onChange}
                   />{" "}
-                </Form.Group>
+                </Form.Group>{" "}
                 <Form.Group>
                   <Form.Label className="control-label"> Email: </Form.Label>{" "}
                   <Form.Control
@@ -151,7 +155,7 @@ class SignUp extends Component {
                     value={this.state.email}
                     onChange={this.onChange}
                   />{" "}
-                </Form.Group>
+                </Form.Group>{" "}
                 <Form.Group>
                   <Form.Label className="control-label"> Password: </Form.Label>{" "}
                   <Form.Control
@@ -161,7 +165,7 @@ class SignUp extends Component {
                     value={this.state.password}
                     onChange={this.onChange}
                   />{" "}
-                </Form.Group>
+                </Form.Group>{" "}
                 <Form.Group>
                   <Form.Label className="control-label">
                     Confirm your password:
@@ -173,7 +177,7 @@ class SignUp extends Component {
                     value={this.state.passwordConfirmation}
                     onChange={this.onChange}
                   />{" "}
-                </Form.Group>
+                </Form.Group>{" "}
                 <Form.Group>
                   <Form.Label className="control-label"> Picture: </Form.Label>{" "}
                   <Form.Control
@@ -183,38 +187,41 @@ class SignUp extends Component {
                     value={this.state.picture}
                     onChange={this.onChange}
                   />{" "}
-                </Form.Group>
+                </Form.Group>{" "}
                 {this.props.error.error && (
                   <h3 className="error"> {this.props.error.error} </h3>
-                )}
+                )}{" "}
                 <button className="button-signup"> Sign up </button>{" "}
-              </form>
-            </Col>
-          </Row>
-        </div>
-
+              </form>{" "}
+            </Col>{" "}
+          </Row>{" "}
+        </div>{" "}
         <Row style={style.footerStyle}>
           <Col>
             <Footer> </Footer>{" "}
           </Col>{" "}
-        </Row>
+        </Row>{" "}
       </Container>
     );
   }
 }
 
 SignUp.propTypes = {
-  userSignupRequest: PropTypes.func.isRequired
+  userSignupRequest: PropTypes.func.isRequired,
+  loginUser: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => {
+  console.log(state);
   return {
     users: state.users,
-    error: state.error
+    error: state.error,
+    authenticated: state.authenticated
   };
 };
 
 export default connect(mapStateToProps, {
   fetchUsers,
-  userSignupRequest
+  userSignupRequest,
+  loginUser
 })(SignUp);

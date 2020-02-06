@@ -6,7 +6,9 @@ export const REMOVE_FAVOURITE = "REMOVE_FAVOURITE";
 
 export const addFavourite = itinerary => dispatch => {
   const config = {
-    headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`
+    }
   };
   axios
     .post("http://localhost:5000/users/addfavourite", itinerary, config)
@@ -22,7 +24,9 @@ export const addFavourite = itinerary => dispatch => {
 
 export const removeFavourite = itinerary => dispatch => {
   const config = {
-    headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`
+    }
   };
   axios
     .post("http://localhost:5000/users/removefavourite", itinerary, config)
@@ -40,7 +44,9 @@ export const removeFavourite = itinerary => dispatch => {
 
 export const getFavItin = () => dispatch => {
   const config = {
-    headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`
+    }
   };
   axios.get("http://localhost:5000/users/favourites", config).then(res => {
     dispatch({
