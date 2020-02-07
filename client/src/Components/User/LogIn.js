@@ -163,7 +163,7 @@ class LogIn extends Component {
                     <div className="help-block"> Password is required! </div>
                   )}{" "}
                   {this.props.error.error && (
-                    <h3 className="error"> {this.props.error.error} </h3>
+                    <h3 className="error"> Wrong username or password.</h3>
                   )}
                   <button className="button-signup"> Log in </button>{" "}
                   {loggingIn && (
