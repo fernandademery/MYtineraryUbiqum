@@ -202,7 +202,8 @@ router.post(
                 rating: itinerary.rating,
                 price: itinerary.price,
                 duration: itinerary.duration,
-                img: itinerary.img
+                img: itinerary.img,
+                title: itinerary.title
               });
               user
                 .save()
