@@ -9,7 +9,7 @@ import Cities from "./Components/Cities/Cities.js";
 import SignUp from "./Components/User/SignUp.js";
 import LogIn from "./Components/User/LogIn.js";
 import Itineraries from "./Components/Itinerary/Itineraries";
-import MyAccount from "./Components/User/MyAccount";
+import MyFavourites from "./Components/User/MyFavourites";
 import SuccessPage from "./Components/User/SuccessPage";
 
 function App() {
@@ -30,7 +30,7 @@ function App() {
             <Route path="/signup" component={SignUp} />{" "}
             <Route path="/login" component={LogIn} />{" "}
             <Route path="/itinerary/:cityname" component={Itineraries} />{" "}
-            <Route path="/myaccount" component={MyAccount} />{" "}
+            <Route path="/myfavourites" component={MyFavourites} />{" "}
             <Route path="/success" component={SuccessPage} />{" "}
           </Switch>{" "}
         </div>{" "}

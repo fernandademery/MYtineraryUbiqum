@@ -197,7 +197,12 @@ router.post(
               user.favourites.push({
                 itineraryId: req.body.itineraryId,
                 name: itinerary.title,
-                city: itinerary.city
+                city: itinerary.city,
+                author: itinerary.author,
+                rating: itinerary.rating,
+                price: itinerary.price,
+                duration: itinerary.duration,
+                img: itinerary.img
               });
               user
                 .save()

@@ -11,7 +11,8 @@ import {
   addFavourite,
   removeFavourite
 } from "../../store/actions/favouriteActions";
-import Comments from "./Comments";
+import axios from "axios";
+import { Input } from "antd";
 
 export class Itinerary extends Component {
   constructor(props) {
@@ -19,19 +20,25 @@ export class Itinerary extends Component {
     this.state = {
       activities: [],
       expand: false,
-      CommentLists: []
+      CommentLists: [],
+      comment: ""
     };
+    this.handleChange = this.handleChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   }
   componentDidMount() {
     // "itinerary" was passed in as prop from the Itineraries component - where we're mapping through all itineraries.
     const { itinerary } = this.props;
 
-    console.log(itinerary.activities);
+    console.log(this.props);
+
     this.setState({
       activities: itinerary.activities
     });
+    this.getComments();
   }
 
+  // Managing favourites:
   addFavouriteItinerary = () => {
     const { user } = this.props;
     if (user.authenticated === true) {
@@ -60,6 +67,57 @@ export class Itinerary extends Component {
     }
   };
 
+  // Managing comments
+  handleChange(e) {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  }
+
+  onSubmit(e, newComment) {
+    e.preventDefault();
+    console.log(this.props);
+    const variables = {
+      content: this.state.comment,
+      writer: this.props.user.user.id,
+      postId: this.props.PostId,
+      itinerary: this.props.itinerary._id
+    };
+    const config = {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`
+      }
+    };
+    axios
+      .post("http://localhost:5000/comments/savecomment", variables, config)
+      .then(response => {
+        if (response.data.success) {
+          this.setState({
+            comment: ""
+          });
+          this.updateComment(response.data.result);
+        } else {
+          alert("Failed to save comment!");
+        }
+      });
+  }
+
+  updateComment = newComment => {
+    this.setState({ CommentLists: this.state.CommentLists.concat(newComment) });
+  };
+
+  getComments = itineraryId => {
+    axios.post(`http://localhost:5000/comments/getcomments`).then(response => {
+      console.log(response);
+      if (response.data.success) {
+        console.log(response.data);
+        this.setState({
+          CommentLists: response.data.comments
+        });
+      }
+    });
+  };
+
   render() {
     const { itinerary } = this.props;
 
@@ -71,6 +129,10 @@ export class Itinerary extends Component {
         width: "90px",
         borderRadius: "50%",
         padding: "5px"
+      },
+      commentImgStyle: {
+        width: "40px",
+        borderRadius: "50%"
       }
     };
     console.log(itinerary.price);
@@ -126,11 +188,7 @@ export class Itinerary extends Component {
         />
       );
     }
-
-    const updateComment = newComment => {
-      this.setState({ CommentLists: newComment });
-    };
-
+    const { TextArea } = Input;
     return (
       <div style={style.itineraryStyle}>
         <Card>
@@ -172,7 +230,7 @@ export class Itinerary extends Component {
                     })
                   }
                 >
-                  Back{" "}
+                  Hide activities{" "}
                 </Button>
               ) : (
                 <Button
@@ -184,7 +242,7 @@ export class Itinerary extends Component {
                     })
                   }
                 >
-                  View all{" "}
+                  View activities{" "}
                 </Button>
               )}{" "}
             </div>{" "}
@@ -196,11 +254,77 @@ export class Itinerary extends Component {
               {expand && <Activities activities={itinerary.activities} />}{" "}
             </div>{" "}
           </div>{" "}
-          <Comments
-            postId={itinerary._id}
-            CommentLists={this.state.CommentLists}
-            refreshFunction={updateComment}
-          />
+          <div>
+            <h2 style={{ textAlign: "left", paddingTop: "20px" }}> Comments</h2>
+            <br />
+            {/* Comment List */}
+            {console.log(this.state.CommentLists)}
+            {this.state.CommentLists &&
+              this.state.CommentLists.map(onecomment => {
+                if (onecomment.itinerary === itinerary._id) {
+                  return (
+                    <React.Fragment>
+                      <Card>
+                        <Card.Body className="flex-container-comment">
+                          <div style={{ alignSelf: "center" }}>
+                            <img
+                              style={style.commentImgStyle}
+                              src={onecomment.writer.picture}
+                              alt="Profile"
+                            />{" "}
+                          </div>
+                          <div
+                            style={{ justifySelf: "left", paddingLeft: "10px" }}
+                          >
+                            <Card.Title>
+                              {" "}
+                              {onecomment.writer.username}:{" "}
+                            </Card.Title>
+                            <Card.Text>{onecomment.content}</Card.Text>
+                          </div>
+                        </Card.Body>
+                      </Card>
+                    </React.Fragment>
+                  );
+                }
+              })}
+
+            {this.props.user.authenticated && (
+              <form
+                style={{
+                  dislay: "grid !important",
+                  gridTemplateColumns: "75% 25% !important"
+                }}
+                onSubmit={this.onSubmit}
+              >
+                {" "}
+                <TextArea
+                  style={{
+                    width: "70%",
+                    borderRadius: "5px",
+                    marginTop: "10px"
+                  }}
+                  onChange={this.handleChange}
+                  value={this.state.comment}
+                  placeholder="Write your comment here"
+                  name="comment"
+                />
+                <Button
+                  onClick={this.onSubmit}
+                  style={{
+                    width: "80px",
+                    height: "30px",
+                    fontSize: "15px",
+                    marginBottom: "25px",
+                    borderRadius: "5px"
+                  }}
+                  variant="info"
+                >
+                  Submit
+                </Button>
+              </form>
+            )}
+          </div>
         </Card>{" "}
       </div>
     );

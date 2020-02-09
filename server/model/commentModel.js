@@ -8,11 +8,11 @@ const commentSchema = mongoose.Schema({
     },
     postId: {
         type: Schema.Types.ObjectId,
-        ref: 'itinerary'
+
+
     },
-    responseTo: {
-        type: Schema.Types.ObjectId,
-        ref: 'user'
+    itinerary: {
+        type: String
     },
     content: {
         type: String

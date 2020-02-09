@@ -7,6 +7,8 @@ import usersReducer from "./signupReducer";
 import errorReducer from "./errorReducer";
 import favouriteReducer from "./favouriteReducer";
 
+
+
 const rootReducer = combineReducers({
     cities: citiesReducer,
     itineraries: itinerariesReducer,

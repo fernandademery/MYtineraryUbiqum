@@ -184,6 +184,11 @@ body {
   font-size: 13px !important;
 }
 
+.flex-container-comment {
+  display: grid !important;
+  grid-template-columns: 25% 75%;
+}
+
 /* Button activities */
 .btn-info {
   background-color: #f2bbd5 !important;
@@ -256,13 +261,7 @@ body {
   width: 100% !important;
 }
 
-/* 
-.form-group {
-  display: flex !important;
-  justify-content: flex-start !important;
-} */
 
-/* Signup page */
 @media (max-width: 400px) {
 
 

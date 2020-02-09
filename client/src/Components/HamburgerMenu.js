@@ -24,17 +24,17 @@ function HamburgerMenu(props) {
         Home
       </Link>
 
-      <Link className="menu-item" activeClassName="active" to="/cities">
-        MYtineraries
-      </Link>
-
-      <a className="menu-item" href="/about">
-        About us
+      <a className="menu-item" href="/cities">
+        Mytineraries
       </a>
       {authenticated ? (
         <React.Fragment>
-          <Link className="menu-item" to="/myAccount" style={style.menuStyle}>
-            My account
+          <Link
+            className="menu-item"
+            to="/myfavourites"
+            style={style.menuStyle}
+          >
+            My Favourites
           </Link>{" "}
           <br></br>
           <button onClick={props.logOut} style={style.menuStyle}>
