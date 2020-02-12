@@ -3,6 +3,12 @@ import jwt_decode from "jwt-decode";
 
 
 export const ADD_USER = "ADD_USER";
+export const SET_USERS = "SET_USERS";
+export const ADD_USER_ERROR = "ADD_USER_ERROR";
+export const USER_LOADING = "USER_LOADING";
+export const LOGIN_USER_ERROR = "LOGIN_USER_ERROR";
+export const LOG_OUT = 'LOG_OUT';
+
 export function addUser(user) {
   return {
     type: ADD_USER,
@@ -10,7 +16,6 @@ export function addUser(user) {
   };
 }
 
-export const ADD_USER_ERROR = "ADD_USER_ERROR";
 export function addUserError(error) {
   return (dispatch) => {
     dispatch({
@@ -20,7 +25,13 @@ export function addUserError(error) {
   };
 }
 
-export const LOGIN_USER_ERROR = "LOGIN_USER_ERROR";
+export const userLoading = () => {
+  return {
+    type: USER_LOADING
+  };
+};
+
+
 
 export function fetchUsers(email) {
   return dispatch => {
@@ -51,12 +62,6 @@ export const userSignupRequest = formData => dispatch => {
     });
 };
 
-export const USER_LOADING = "USER_LOADING";
-export const userLoading = () => {
-  return {
-    type: USER_LOADING
-  };
-};
 
 
 // Post call for login
@@ -99,7 +104,7 @@ export const authToken = token => {
   }
 };
 
-export const SET_USERS = "SET_USERS";
+
 export const setUsers = decode => {
   return {
     type: SET_USERS,
@@ -108,7 +113,7 @@ export const setUsers = decode => {
 };
 
 // Logout function removing token from local storage.
-export const LOG_OUT = 'LOG_OUT'
+
 export const logOut = (user) => {
   return dispatch => {
     console.log('user in user action ', user);

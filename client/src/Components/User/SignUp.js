@@ -3,11 +3,7 @@ import Form from "react-bootstrap/Form";
 import PropTypes from "prop-types";
 
 import { connect } from "react-redux";
-import {
-  userSignupRequest,
-  fetchUsers,
-  loginUser
-} from "../../store/actions/signupActions";
+import { userSignupRequest } from "../../store/actions/signupActions";
 import Header from "../Header";
 import Profile from "../Landing/Profile";
 import HamburgerMenu from "../HamburgerMenu";
@@ -207,8 +203,7 @@ class SignUp extends Component {
 }
 
 SignUp.propTypes = {
-  userSignupRequest: PropTypes.func.isRequired,
-  loginUser: PropTypes.func.isRequired
+  userSignupRequest: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => {
@@ -221,7 +216,5 @@ const mapStateToProps = state => {
 };
 
 export default connect(mapStateToProps, {
-  fetchUsers,
-  userSignupRequest,
-  loginUser
+  userSignupRequest
 })(SignUp);

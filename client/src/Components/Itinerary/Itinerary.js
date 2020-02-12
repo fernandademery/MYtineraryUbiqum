@@ -38,6 +38,8 @@ export class Itinerary extends Component {
     this.getComments();
   }
 
+  //**********************************************************************************//
+
   // Managing favourites:
   addFavouriteItinerary = () => {
     const { user } = this.props;
@@ -66,6 +68,8 @@ export class Itinerary extends Component {
       this.props.removeFavourite(itinerary);
     }
   };
+
+  //**********************************************************************************//
 
   // Managing comments
   handleChange(e) {
@@ -103,7 +107,9 @@ export class Itinerary extends Component {
   }
 
   updateComment = newComment => {
-    this.setState({ CommentLists: this.state.CommentLists.concat(newComment) });
+    this.setState({
+      CommentLists: this.state.CommentLists.concat(newComment)
+    });
   };
 
   getComments = itineraryId => {
@@ -117,6 +123,8 @@ export class Itinerary extends Component {
       }
     });
   };
+
+  //*************************************************************************//
 
   render() {
     const { itinerary } = this.props;
@@ -156,6 +164,10 @@ export class Itinerary extends Component {
     const { expand } = this.state;
 
     const { favourites } = this.props.favourites;
+
+    //************************************************************************//
+
+    //Favourites
     const favItin = favourites.filter(
       favourite => favourite.itineraryId === itinerary._id
     );
@@ -207,7 +219,7 @@ export class Itinerary extends Component {
                 {itinerary.rating}
                 likes {itinerary.duration}
                 hours {price(itinerary)}{" "}
-              </Card.Subtitle>
+              </Card.Subtitle>{" "}
               <Card.Text>
                 {" "}
                 {itinerary.tag.map((hash, i) => (
@@ -249,16 +261,22 @@ export class Itinerary extends Component {
             <div className="container-activ-expand">
               {" "}
               {/* The same way we passed one itinerary as props from the Itineraries component to the Itinerary component
-          we're now passing the activities as props to the Activities component for that I can refer to one itinerary
-          and specify that I'm only passing the activities "activities={itinerary.activities}". */}{" "}
+                  we're now passing the activities as props to the Activities component for that I can refer to one itinerary
+                  and specify that I'm only passing the activities "activities={itinerary.activities}". */}{" "}
               {expand && <Activities activities={itinerary.activities} />}{" "}
             </div>{" "}
           </div>{" "}
           <div>
-            <h2 style={{ textAlign: "left", paddingTop: "20px" }}> Comments</h2>
-            <br />
-            {/* Comment List */}
-            {console.log(this.state.CommentLists)}
+            <h2
+              style={{
+                textAlign: "left",
+                paddingTop: "20px"
+              }}
+            >
+              {" "}
+              Comments{" "}
+            </h2>{" "}
+            <br /> {/* Comment List */} {console.log(this.state.CommentLists)}{" "}
             {this.state.CommentLists &&
               this.state.CommentLists.map(onecomment => {
                 if (onecomment.itinerary === itinerary._id) {
@@ -266,29 +284,35 @@ export class Itinerary extends Component {
                     <React.Fragment>
                       <Card>
                         <Card.Body className="flex-container-comment">
-                          <div style={{ alignSelf: "center" }}>
+                          <div
+                            style={{
+                              alignSelf: "center"
+                            }}
+                          >
                             <img
                               style={style.commentImgStyle}
                               src={onecomment.writer.picture}
                               alt="Profile"
                             />{" "}
-                          </div>
+                          </div>{" "}
                           <div
-                            style={{ justifySelf: "left", paddingLeft: "10px" }}
+                            style={{
+                              justifySelf: "left",
+                              paddingLeft: "10px"
+                            }}
                           >
                             <Card.Title>
                               {" "}
                               {onecomment.writer.username}:{" "}
-                            </Card.Title>
-                            <Card.Text>{onecomment.content}</Card.Text>
-                          </div>
-                        </Card.Body>
-                      </Card>
+                            </Card.Title>{" "}
+                            <Card.Text> {onecomment.content} </Card.Text>{" "}
+                          </div>{" "}
+                        </Card.Body>{" "}
+                      </Card>{" "}
                     </React.Fragment>
                   );
                 }
               })}
-
             {this.props.user.authenticated && (
               <form
                 style={{
@@ -320,11 +344,11 @@ export class Itinerary extends Component {
                   }}
                   variant="info"
                 >
-                  Submit
-                </Button>
+                  Submit{" "}
+                </Button>{" "}
               </form>
-            )}
-          </div>
+            )}{" "}
+          </div>{" "}
         </Card>{" "}
       </div>
     );

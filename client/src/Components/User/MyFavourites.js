@@ -12,6 +12,8 @@ import Button from "react-bootstrap/Button";
 import { Card } from "react-bootstrap";
 
 function MyFavourites(props) {
+  //Received user as props in order to display the favourites array.
+
   const style = {
     bodyStyle: {
       padding: "0px",

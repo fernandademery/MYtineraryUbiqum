@@ -17,6 +17,8 @@ export class Itineraries extends Component {
     console.log(this.props);
     const { cityname } = this.props.match.params;
     this.props.fetchItineraries(cityname);
+
+    // get previous favourite itineraries when the user is logged in.
     if (this.props.authenticated === true) {
       this.props.getFavItin();
     }
@@ -128,7 +130,7 @@ export class Itineraries extends Component {
               <div>
                 {" "}
                 {/* In this loop, I'm mapping through itineraries and returning the Itinerary component for each itinerary
-            this "itinerary={itinerary}" is passing ONE itinerary through props to the Itinerary component*/}{" "}
+                    this "itinerary={itinerary}" is passing ONE itinerary through props to the Itinerary component*/}{" "}
                 {itineraries &&
                   itineraries.map(itinerary => {
                     return (

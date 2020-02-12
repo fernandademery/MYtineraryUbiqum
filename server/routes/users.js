@@ -69,6 +69,8 @@ router.get("/all", (req, res) => {
     .catch(err => console.log(err));
 });
 
+//*****************************************************************//
+
 // Login POST route:
 const key = require("../keys");
 const jwt = require("jsonwebtoken");
@@ -164,6 +166,8 @@ router.get(
       });
   }
 );
+
+//***************************************************************//
 
 // Add favourites:
 
