@@ -4,7 +4,7 @@ export const REQUEST_CITIES = "REQUEST_CITIES";
 
 function requestCities(cities) {
   return {
-    type: REQUEST_CITIES
+    type: REQUEST_CITIES,
   };
 }
 
@@ -14,18 +14,19 @@ function receiveCities(cities, json) {
   return {
     type: RECEIVE_CITIES,
     cities,
-    city: json.map(child => child)
+    city: json && json.map((child) => child),
   };
 }
 
 export function fetchCities(cities) {
-  return function(dispatch) {
+  return function (dispatch) {
     dispatch(requestCities(cities));
     return fetch("http://localhost:5000/cities/all")
       .then(
-        response => response.json(),
-        error => console.log("An error occurred.", error)
+        (response) => response.json(),
+        (error) => console.log("An error occurred.", error)
       )
-      .then(json => dispatch(receiveCities(cities, json)));
+      .then((json) => dispatch(receiveCities(cities, json)))
+      .catch((err) => console.error(err));
   };
 }
