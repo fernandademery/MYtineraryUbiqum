@@ -1,0 +1,43 @@
+{
+  "files": {
+    "main.css": "/static/css/main.6da5c0cd.chunk.css",
+    "main.js": "/static/js/main.ea557026.chunk.js",
+    "main.js.map": "/static/js/main.ea557026.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.88d4f3f8.js",
+    "runtime-main.js.map": "/static/js/runtime-main.88d4f3f8.js.map",
+    "static/css/2.237a6266.chunk.css": "/static/css/2.237a6266.chunk.css",
+    "static/js/2.701a26b3.chunk.js": "/static/js/2.701a26b3.chunk.js",
+    "static/js/2.701a26b3.chunk.js.map": "/static/js/2.701a26b3.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.a1e0496574851ba963cc679b805dec0f.js": "/precache-manifest.a1e0496574851ba963cc679b805dec0f.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/2.237a6266.chunk.css.map": "/static/css/2.237a6266.chunk.css.map",
+    "static/css/main.6da5c0cd.chunk.css.map": "/static/css/main.6da5c0cd.chunk.css.map",
+    "static/js/2.701a26b3.chunk.js.LICENSE": "/static/js/2.701a26b3.chunk.js.LICENSE",
+    "static/media/MYtineraryLogo.png": "/static/media/MYtineraryLogo.a227b9b3.png",
+    "static/media/Star_Empty-512.png": "/static/media/Star_Empty-512.1f6126cd.png",
+    "static/media/barcelona2.jpg": "/static/media/barcelona2.a64f9818.jpg",
+    "static/media/berlin.jpg": "/static/media/berlin.37530144.jpg",
+    "static/media/blank-profile-picture.png": "/static/media/blank-profile-picture.5a021ab9.png",
+    "static/media/buenos-aires.jpg": "/static/media/buenos-aires.f1e2a077.jpg",
+    "static/media/circled-right-2.png": "/static/media/circled-right-2.16fd0ef3.png",
+    "static/media/lisboa.jpg": "/static/media/lisboa.bfb4da32.jpg",
+    "static/media/medellin.jpg": "/static/media/medellin.a5d6e8bd.jpg",
+    "static/media/paris.jpg": "/static/media/paris.79696b61.jpg",
+    "static/media/recife07.jpg": "/static/media/recife07.bc5a9380.jpg",
+    "static/media/styles.css": "/static/media/revicons.2feb69cc.eot",
+    "static/media/rio.jpg": "/static/media/rio.bdff768a.jpg",
+    "static/media/roma2.jpg": "/static/media/roma2.54301740.jpg",
+    "static/media/star-full.png": "/static/media/star-full.4e4b371e.png",
+    "static/media/sydney.jpg": "/static/media/sydney.995dab39.jpg",
+    "static/media/thessaloniki2.jpg": "/static/media/thessaloniki2.62580ed1.jpg",
+    "static/media/viena.jpg": "/static/media/viena.451ba997.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.88d4f3f8.js",
+    "static/css/2.237a6266.chunk.css",
+    "static/js/2.701a26b3.chunk.js",
+    "static/css/main.6da5c0cd.chunk.css",
+    "static/js/main.ea557026.chunk.js"
+  ]
+}
